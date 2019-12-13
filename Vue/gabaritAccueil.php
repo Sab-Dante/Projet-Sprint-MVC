@@ -9,10 +9,19 @@
 </head>
 
 <body>
+	<form action="gabaritAccueil" method="post">
+		<label>Login :</label><input type="text" name="login" /><br/>
+		<label>Mot de passe :</label><input type="password" name="mdp"/><br/>
+		<input type="checkbox" name="agent"><label>Agent</label><br/>
+		<input type="checkbox" name="medecin"><label>Médecin</label><br/>
+		<input type="checkbox" name="directeur"><label>Directeur</label><br/>
+	</form>
 
 
-
-    <?php echo $contenu;?>
+    <?php 
+    	if(isset($contenu)){
+    		echo $contenu;
+    	}?>
 
 </body>
 
