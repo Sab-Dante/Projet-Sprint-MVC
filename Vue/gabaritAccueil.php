@@ -12,9 +12,9 @@
 	<form action="gabaritAccueil" method="post">
 		<label>Login :</label><input type="text" name="login" /><br/>
 		<label>Mot de passe :</label><input type="password" name="mdp"/><br/>
-		<input type="checkbox" name="agent"><label>Agent</label><br/> //ne pas oublier de faire des boutons radios
-		<input type="checkbox" name="medecin"><label>Médecin</label><br/>
-		<input type="checkbox" name="directeur"><label>Directeur</label><br/>
+		<input type="radio" name="grade" value="Agent" checked><label>Agent</label><br/>
+		<input type="radio" name="grade" value="Medecin"><label>Médecin</label><br/>
+		<input type="radio" name="grade" value="Directeur"><label>Directeur</label><br/>
 	</form>
 
 
