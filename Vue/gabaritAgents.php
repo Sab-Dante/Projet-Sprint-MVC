@@ -29,7 +29,7 @@
 	<form action="synthese.php">
 		<fieldset>
 			<legend>Consulter la synthèse d'un patient</legend>																			<!--Formulaire de consultation de synthèses-->
-			<label for="codeSecuriteSociale" >Numero de sécurité social</label><input type="text" name="codeSecuriteSociale" required /><br/>
+			<label for="codeSecuriteSociale" >Numero de sécurité social :</label><input type="text" name="codeSecuriteSociale" required /><br/>
 			<input type="submit" name="envoyerSynthse" value="Consulter" />
 		</fieldset>
 	</form>
@@ -37,8 +37,8 @@
 	<form action="gabaritAgents.php" mathod="post" >
 		<fieldset>
 			<legend>Deposer sur un compte patient</legend>																				<!--Formulaire de depot sur compte patient-->
-			<label for="codeSecuriteSociale">Numero de sécurité social</label><input type="text" name="codeSecuriteSociale" required /><br/>
-			<label for="montantDepot">Montant souhaité</label><input type="number" name="montantDepot" required /><br/>
+			<label for="codeSecuriteSociale">Numero de sécurité social :</label><input type="text" name="codeSecuriteSociale" required /><br/>
+			<label for="montantDepot">Montant souhaité :</label><input type="number" name="montantDepot" required /><br/>
 			<input type="submit" name="envoyerMontantDepot" value="Déposer" required />
 		</fieldset>
 	</form>
@@ -58,7 +58,7 @@
 	<form action="gabaritAgents.php" method="post">
 		<fieldset>														
 			<legend>Visualiser les rendez-vous en attente de payement</legend>
-			<label for="codeSecuriteSociale"></label><input type="text" name="codeSecuriteSociale" required/><br/>
+			<label for="codeSecuriteSociale">Numero de sécurité social :</label><input type="text" name="codeSecuriteSociale" required/><br/>
 			<input type="submit" value="Visualiser" />
 		</fieldset>
 	</form>
