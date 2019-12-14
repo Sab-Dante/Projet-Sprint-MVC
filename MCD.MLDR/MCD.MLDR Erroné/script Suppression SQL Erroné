@@ -1,0 +1,8 @@
+DROP TABLE compte;
+DROP TABLE motif;
+DROP TABLE medecin;
+DROP TABLE emploidutemps;
+DROP TABLE patient;
+DROP TABLE agent;
+DROP TABLE directeur;
+DROP TABLE rendezvous;
