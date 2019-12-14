@@ -59,7 +59,7 @@
 		<fieldset>														
 			<legend>Visualiser les rendez-vous en attente de payement</legend>
 			<label for="codeSecuriteSociale">Numero de sécurité social :</label><input type="text" name="codeSecuriteSociale" required/><br/>
-			<input type="submit" value="Visualiser" />
+			<input type="submit" name="visualiserRendezVous" value="Visualiser" />
 		</fieldset>
 	</form>
 	<script type="text/javascript.js"></script>
