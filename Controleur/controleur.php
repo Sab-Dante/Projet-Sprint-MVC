@@ -68,7 +68,11 @@ require_once('Vue/vue.php');
 	}	
 
 	function CtlBloquerCreneau(){
+		foreach ($date as $key => $value) {
+			ajouterCreneau($value, $heure[$key]);
+			
 
+	 }
 	}
 
 	function CtlAjouterEmploye($login,$mdp,$grade){

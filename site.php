@@ -45,9 +45,10 @@ try{
 		CtlAfficherRendezVousNonPayes($nSecu);	
 	}
 
-	else if (isset($_POST["ajouter_creneau"])) {
-
-		CtlBloquerCreneau();
+	else if (isset($_POST["ajouterCreneau"])) {
+		$date = $_POST['date'];
+		$heure = $_POST['hour'];
+		CtlBloquerCreneau($date, $hour);		
 	}
 
 	else if (isset($_POST["creerEmploye"])) {
