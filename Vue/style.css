@@ -13,3 +13,9 @@ form{
 	background-color: white;
 	box-shadow: 0 0 20px grey;
 }
+
+.msgErreurPageAgent{
+	margin : 3% 0;
+	background-color: white;
+	box-shadow: 0 0 20px grey;
+}
