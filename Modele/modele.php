@@ -101,9 +101,11 @@
 
 	function modifierMotif($newNom,$newConsigne,$nouvellePiece,$nouveauPrix){
 	$connexion=getConnect();
-	$requete=$connexion->prepare("SELECT login,motdepasse FROM $grade WHERE login = :login AND motdepasse = :mdp");
-	$requete->bindValue(':login', $login, PDO::PARAM_STR);
-	$requete->bindValue(':mdp', $mdp, PDO::PARAM_STR);
+	$requete=$connexion->prepare("UPDATE motif SET nom=:newNom,consigne=:newConsigne,piece=:nouvellePiece,prix=:nouveauPrix");
+	$requete->bindValue(':newNom', $newNom, PDO::PARAM_STR);
+	$requete->bindValue(':newConsigne', $newConsigne, PDO::PARAM_STR);
+	$requete->bindValue(':nouvellePiece', $nouvellePiece, PDO::PARAM_STR);
+	$requete->bindValue(':nouveauPrix', $nouveauPrix, PDO::PARAM_INT);
 	$requete->execute();
 	$requete->closeCursor();
 	}
