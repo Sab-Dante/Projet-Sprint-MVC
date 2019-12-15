@@ -1,6 +1,10 @@
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+<?php
+=======
 <?php
 
 define("SERVEUR","localhost");
-define("USER","root");
-define("PASSWORD","");
-define("BDD","bddSprint");
+define("USER","rootmvc");
+define("PASSWORD","projetmvc");
+define("BDD","sprintmvc");

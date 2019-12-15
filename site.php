@@ -4,14 +4,13 @@ require_once('Controleur/controleur.php');
 
 try{
 	if (isset($_POST["seConnecter"])) {
-		
 		$login = $_POST["login"];
 		$mdp = $_POST['password'];
 		$grade = $_POST['grade'];
 
 		CtlTesterConnexion($login,$mdp,$grade);
 	}
-
+	
 	else if (isset($_POST["envoyerNvPatient"])) {
 
 		$nom = $_POST['nomPatient'];
@@ -114,7 +113,6 @@ try{
 		$id=$_POST['idMedecin'];
 		CtlSupprimerMedecin($id);
 	}
-
 	else{
 		CtlAccueil();
 	}
