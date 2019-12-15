@@ -3,12 +3,9 @@
 require_once('Modele/modele.php');
 require_once('Vue/vue.php');
 
-	function CtlTesterConnexion($login,$mdp,$grade){
-
 	function CtlAccueil(){
 		afficherAccueil();
 	}
-
 
 	function CtlTesterConnexion($login,$mgp,$grade){
 		if(!empty($login) &&!empty($mdp)){
@@ -30,6 +27,7 @@ require_once('Vue/vue.php');
 		}
 		else{
 			throw new Exception('Un des champs est vide');
+		}
 	}
 
 	function CtlAfficherSynthese($nSecu){
@@ -148,4 +146,3 @@ require_once('Vue/vue.php');
 	function CtlErreur($msg){
 		CtlAfficherErreur($msg);
 	}
-

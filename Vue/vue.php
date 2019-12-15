@@ -1,5 +1,9 @@
 <?php
 
+	function afficherAccueil(){
+		require_once('gabaritAccueil.php');
+	}
+
 	function afficherPage($grade){
 		if($grade=='Agent'){
 			require_once('gabaritAgent.php');
