@@ -64,7 +64,7 @@ try{
 	}
 
 	else if (isset($_POST["modifierEmploye"])) {
-		$loginRecherche=$_POST["loginRecherche"]
+		$loginRecherche=$_POST["loginRecherche"];
 		$login=$_POST["modifLogin"];
 		$mdp=$_POST["modifMdp"];
 		$grade=$_POST["grade"];
