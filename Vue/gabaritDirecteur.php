@@ -19,15 +19,6 @@
         <label>mot de passe : </label><input type="password" name="mdp" required/><br/>
       </p>
       <p>
-        <label>Nom : </label><input type="text" name="nomMedecin" required/><br/>
-      </p>
-      <p>
-        <label>Prénom : </label><input type="text" name="prenomMedecin" required /><br/>
-      </p>
-      <p>
-        <label>Spécialité si médecin : </label><input type="text" name="specialite" /><br/>
-      </p>
-      <p>
         <input type="radio" name="grade" value="Agent" checked><label>Agent</label><br/>
         <input type="radio" name="grade" value="Medecin"><label>Médecin</label><br/>
         <input type="radio" name="grade" value="Directeur"><label>Directeur</label><br/>
@@ -116,6 +107,25 @@
         </p>
       </form>
     </fieldset>
+
+    <fieldset>
+      <legend>Créer un médecin </legend>
+      <form action="site.php" method="post">
+        <p>
+          <label>Nom du médecin : </label><input type="text" name="nomMedecin" /><br/>
+        </p>
+        <p>
+          <label>Prénom du médecin : </label><input type="text" name="prenomMedecin" /><br/>
+        </p>
+        <p>
+          <label>Spécialité du médecin : </label><input type="text" name="specialite" /><br/>
+        </p>
+        <p>
+          <input type="submit" name="creerMedecin" value="Créer le médecin" /><br/>
+        </p>
+      </form>
+    </fieldset>
+
 
     <fieldset>
       <legend>Supprimer un médecin </legend>

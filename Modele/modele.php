@@ -89,7 +89,7 @@
 
 	function ajouterEmploye($login,$mdp,$grade){
 		$connexion=getConnect();
-		$requete=$connexion->prepare("INSERT INTO $grade(login,mdp) VALUES(:login,:mdp)");
+		$requete=$connexion->prepare("INSERT INTO $grade VALUES(:login,:mdp");
 		$requete->bindValue(':login', $login, PDO::PARAM_STR);
 		$requete->bindValue(':mdp', $mdp, PDO::PARAM_STR);
 		$requete->execute();
@@ -159,6 +159,16 @@
 		$requete->closeCursor();
 	}
 
+	function creerMedecin($nom,$prenom,$spe){
+		$connexion=getConnect();
+		$requete=$connexion->prepare("INSERT INTO medecin(nom,prenom,specialite) VALUES(:nom,:prenom,:spe) ");
+		$requete->bindValue(':nom', $nom, PDO::PARAM_STR);
+		$requete->bindValue(':prenom', $prenom, PDO::PARAM_STR);
+		$requete->bindValue(':spe', $spe, PDO::PARAM_STR);
+		$requete->execute();
+		$requete->closeCursor();
+	}
+
 	function getMedecins(){
 		$connexion=getConnect();
 		$requete=$connexion->prepare("SELECT * FROM medecin");
@@ -168,11 +178,11 @@
 
 
 	function supprimerMedecin($id){
-	$connexion=getConnect();
-	$requete=$connexion->prepare("DELETE * FROM medecin WHERE id=:id");
-	$requete->bindValue(':id', $login, PDO::PARAM_INT);
-	$requete->execute();
-	$requete->closeCursor();
+		$connexion=getConnect();
+		$requete=$connexion->prepare("DELETE * FROM medecin WHERE id=:id");
+		$requete->bindValue(':id', $login, PDO::PARAM_INT);
+		$requete->execute();
+		$requete->closeCursor();
 	}
 
 		

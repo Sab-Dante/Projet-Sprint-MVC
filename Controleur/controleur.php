@@ -79,7 +79,9 @@ require_once('Vue/vue.php');
 		if (!empty($login) && !empty($mdp)){
 			ajouterEmploye($login,$mdp,$grade);
 		}
-
+		else{
+			throw new Exception('un champ est vide');
+		}
 
 	}
 
@@ -92,11 +94,17 @@ require_once('Vue/vue.php');
 			afficherEmployes($login);
 
 		}
+		else{
+			throw new Exception('un champ est vide');
+		}
 	}
 
 	function CtlModifierEmploye($loginRecherche,$login,$mdp,$grade){
 		if (!empty($login) && !empty($mdp)){
 			modifierEmploye($loginRecherche,$login,$mdp,$grade);
+		}
+		else{
+			throw new Exception('un champ est vide');
 		}
 	}
 
@@ -118,6 +126,9 @@ require_once('Vue/vue.php');
 			else{
 				modifierMotif($newNom,$newConsigne,$nouvellePiece,$nouveauPrix);
 			}
+		}
+		else{
+			throw new Exception('un des champs vide');
 		}
 	}
 
@@ -141,8 +152,11 @@ require_once('Vue/vue.php');
 		if (!empty($nom) && !empty($prenom) && !empty($spe)){
 			creerMedecin($nom,$prenom,$spe);
 		}
+		else{
+			throw new Exception('un des champs vide');
+		}
 	}
-
+	
 	function CtlAfficherMedecins(){
 		$medecins=getMedecins();
 		if ($medecins==null){
