@@ -6,10 +6,10 @@
 
 	function afficherPage($grade){
 		if($grade=='Agent'){
-			require_once('gabaritAgent.php');
+			require_once('gabaritAgents.php');
 		}
 		else if($grade=='Medecin'){
-			require_once('gabaritMedecin.php');
+			require_once('gabaritMedecins.php');
 		}
 		else if($grade=='Directeur'){
 			require_once('gabaritDirecteur.php');
@@ -17,4 +17,8 @@
 		else{
 			require_once('gabaritAccueil.php');
 		}
+	}
+
+	function afficherErreur($msg){
+ 		echo $msg;
 	}

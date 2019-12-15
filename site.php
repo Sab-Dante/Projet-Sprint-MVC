@@ -5,9 +5,8 @@ require_once('Controleur/controleur.php');
 try{
 	if (isset($_POST["seConnecter"])) {
 		$login = $_POST["login"];
-		$mdp = $_POST['password'];
+		$mdp = $_POST['mdp'];
 		$grade = $_POST['grade'];
-
 		CtlTesterConnexion($login,$mdp,$grade);
 	}
 	
