@@ -22,3 +22,66 @@
 			$res=true;
 		}
 	}
+
+	function ajouterEmploye($login,$mdp,$grade){
+
+		
+	}
+	function modifierEmploye($login,$mdp){
+
+		
+	}
+	function creerMotif($nom,$consigne,$piece,$prix){
+
+		
+	}
+	function checkNomMotif($nom){
+
+		
+	}
+	function modifierMotif($newNom,$newConsigne,$nouvellePiece,$nouveauPrix){
+
+		
+	}
+	function supprimerMotif($nom){
+
+		
+	}
+	function getMotifs(){
+
+		
+	}
+	function creerMedecin($nom,$prenom,$spe){
+
+		
+	}
+	function getMedecins(){
+
+		
+	}
+	function supprimerMedecin($id){
+
+		
+	}
+	function testConnexion($login,$mdp,$grade){
+
+		
+	}
+	function ajouterPatient(){
+
+		
+	}
+	function synthesePatient($nSecu){
+
+		
+	}
+	function ajouterMontant($nSecu,$montant){
+
+		
+	}
+	function rdvNonPayes($nSecu){
+
+		
+	}
+
+	function 
