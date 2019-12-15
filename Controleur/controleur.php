@@ -4,13 +4,13 @@ require_once('Modele/modele.php');
 require_once('Vue/vue.php');
 
 
-	function CtlTesterConnexion($login,$mgp,$grade){
+	function CtlTesterConnexion($login,$mdp,$grade){
 		if(!empty($login) &&!empty($mdp)){
 			if(testConnexion($login,$mdp,$grade)){
 				afficherPage($grade);
 			}
 			else{
-				throw new Exception('Login ou mot de passe incorrect. Veulliez réessayer.')
+				throw new Exception('Login ou mot de passe incorrect. Veulliez réessayer.');
 			}
 		}
 	}

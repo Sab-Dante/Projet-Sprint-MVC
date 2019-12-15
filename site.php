@@ -7,11 +7,11 @@ try{
 		
 		$login = $_POST["login"];
 		$mdp = $_POST['password'];
-		$grade = $_POST['grade']
+		$grade = $_POST['grade'];
 
 		CtlTesterConnexion($login,$mdp,$grade);
 	}
-
+	
 	else if (isset($_POST["envoyerNvPatient"])) {
 
 		$nom = $_POST['nomPatient'];
