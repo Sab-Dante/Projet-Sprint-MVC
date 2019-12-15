@@ -10,7 +10,7 @@
 </head>
 
 <body>
-	<form>
+	<form action="gabaritMedecins.php" method="post">
 		<fieldset><legend>Tâches administratives</legend>
 			<label>Nombre de créneaux : </label>
 			<input style="width:9%;" type="text" name="nb_creneau" onBlur="ajouter_zone()">
@@ -19,8 +19,11 @@
 		</fieldset>
 	</form>
 
-
-    <?php echo $contenu;?>
+	<?php 
+    	if(isset($contenu)){
+    		echo $contenu;
+    	}?>
+    
 
 </body>
 
