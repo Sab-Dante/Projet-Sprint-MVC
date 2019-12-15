@@ -8,7 +8,6 @@
  		return $connexion;
 	}
 
-	
 	function testConnexion($login,$mdp,$grade){
 		$res = false;
 		$connexion=getConnect();
@@ -24,47 +23,8 @@
 		return $res;
 	}
 
-	function ajouterEmploye($login,$mdp,$grade){
+	//Fonctions de l'AGENT d'accueil//	
 
-
-	}
-	function modifierEmploye($login,$mdp){
-
-
-	}
-	function creerMotif($nom,$consigne,$piece,$prix){
-
-
-	}
-	function checkNomMotif($nom){
-
-
-	}
-	function modifierMotif($newNom,$newConsigne,$nouvellePiece,$nouveauPrix){
-
-
-	}
-	function supprimerMotif($nom){
-
-
-	}
-	function getMotifs(){
-
-
-	}
-	function creerMedecin($nom,$prenom,$spe){
-
-
-	}
-	function getMedecins(){
-
-
-	}
-	function supprimerMedecin($id){
-
-
-	}
-	
 	function ajouterPatient(){
 
 
@@ -82,4 +42,59 @@
 
 	}
 
-	function 
+	//Fonctions du DIRECTEUR// :
+
+	function ajouterEmploye($login,$mdp,$grade){
+
+
+	}
+
+
+	function modifierEmploye($login,$mdp){
+
+
+	}
+
+
+	function creerMotif($nom,$consigne,$piece,$prix){
+
+
+	}
+
+	function getMotifs(){
+
+
+	}
+
+	function checkNomMotif($nom){
+
+
+	}
+
+	function modifierMotif($newNom,$newConsigne,$nouvellePiece,$nouveauPrix){
+
+
+	}
+
+	function supprimerMotif($nom){
+
+
+	}
+	
+
+	function creerMedecin($nom,$prenom,$spe){
+
+
+	}
+
+
+	function getMedecins(){
+
+
+	}
+
+
+	function supprimerMedecin($id){
+
+
+	}

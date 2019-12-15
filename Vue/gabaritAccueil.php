@@ -10,7 +10,7 @@
 
 <body>
 	<h1>QUI ES TU ETRANGER</h1>
-	<form action="" method="post">
+	<form action="site.php" method="post">
 		<fieldset>
 			<legend>Connexion</legend>
 			<label>Login :</label><input type="text" name="login" /><br/>
