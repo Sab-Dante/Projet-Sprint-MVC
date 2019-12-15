@@ -49,6 +49,7 @@
 	<form action="site.php" method="post">
 		<fieldset>
 			<legend>Fixer un rendez-vous</legend>																						<!--Formulaire de prise de rendez-vous-->
+			<label for="codeSecuriteSociale">Numero de sécurité social :</label><input type="text" name="codeSecuriteSociale" required /><br/>
 			<label for="nomMedecinConsultant">Médecin :</label><input type="text" name="nomMedecinConsultant" required /><br/>
 			<label for="specialiteMedecinConsultant">Specialité :</label><input type="text" name="specialiteMedecinConsultant" required /><br/>
 			<label for="dateRdv">Date :</label><input type="date" name="dateRdv" required /><br/>
@@ -63,9 +64,10 @@
 			<legend>Visualiser les rendez-vous en attente de payement</legend>
 			<label for="codeSecuriteSociale">Numero de sécurité social :</label><input type="text" name="codeSecuriteSociale" required/><br/>
 			<input type="submit" name="visualiserRendezVous" value="Visualiser" />
+			<?php if(isset($rendezVousEnAttenteDePayement)){echo $rendezVousEnAttenteDePayement;} ?>
 		</fieldset>
 	</form>
-	<script type="text/javascript.js"></script>
+	<script src="Vue/jsPageAgent.js"></script>
 </body>
 
 </html>

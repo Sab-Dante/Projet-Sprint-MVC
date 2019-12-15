@@ -32,8 +32,8 @@ try{
 
 	else if (isset($_POST["envoyerMontantDepot"])) {
 
-		$nSecu = ['codeSecuriteSociale'];
-		$montant = ['montantDepot'];
+		$nSecu = $_POST['codeSecuriteSociale'];
+		$montant = intval($_POST['montantDepot']);
 
 		CtlDepot($nSecu,$montant);
 	}

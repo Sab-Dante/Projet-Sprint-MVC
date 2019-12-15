@@ -54,16 +54,25 @@ require_once('Vue/vue.php');
 	function CtlDepot($nSecu,$montant){
 		if(!empty($nSecu) && !empty($montant)){
 			ajouterMontant($nSecu,$montant);
+			afficherPage('Agent');
+		}
+		else{
+			afficherPage('Agent', 'Un des champs est vide');
 		}
 	}
 
 	function CtlAfficherRendezVousNonPayes($nSecu){
 		if(!empty($nSecu)){
-			$rdvNonPayes=rdvNonPayes($nSecu);
-			if ($rdvNonPayes==null){
-				throw new Exception('Numéro incorrect');
+			if(!nssLibre($nSecu)){
+				$rdvNonPayes=getRdvNonPayes($nSecu);
+				afficherRdvNonPayes($rdvNonPayes);
 			}
-			afficherRdvNonPayes($rdvNonPayes);
+			else{
+				afficherPage('Agent','Ce numero de sécurité social n\'est pas enregistré');
+			}
+		}
+		else{
+			afficherPage('Agent','Le champ est vide');
 		}
 	}	
 

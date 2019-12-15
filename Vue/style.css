@@ -1,11 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap');
 
 body{
 	padding : 0;
 	margin : 0;
 	text-align: center;
 	background-color : #FFFEDD;
-	font-family: 'Roboto Mono', monospace;
 }
 
 form{
@@ -18,4 +16,14 @@ form{
 	margin : 3% 0;
 	background-color: white;
 	box-shadow: 0 0 20px grey;
+}
+
+.rdvNonPaye{
+	margin : 1%;
+	background-color: #FFEEDE;
+	box-shadow: 0 0 25px grey;
+}
+
+input[type="submit"] , input[type="reset"]{
+	margin :10px;
 }
