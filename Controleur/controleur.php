@@ -7,8 +7,8 @@ require_once('Vue/vue.php');
 		afficherAccueil();
 	}
 
-	function CtlTesterConnexion($login,$mgp,$grade){
-		if(!empty($login) &&!empty($mdp)){
+	function CtlTesterConnexion($login,$mdp,$grade){
+		if(!empty($login) && !empty($mdp)){
 			if(testConnexion($login,$mdp,$grade)){
 				afficherPage($grade);
 			}
