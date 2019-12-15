@@ -113,6 +113,11 @@ try{
 		$id=$_POST['idMedecin'];
 		CtlSupprimerMedecin($id);
 	}
+	else if (isset())
+
+	else{
+		CtlAccueil();
+	}
 
 
 }
