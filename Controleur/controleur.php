@@ -146,6 +146,6 @@ require_once('Vue/vue.php');
 
 
 	function CtlErreur($msg){
-		CtlAfficherErreur($msg);
+		afficherErreur($msg);
 	}
 
