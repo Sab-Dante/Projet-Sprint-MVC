@@ -4,14 +4,23 @@ require_once('Modele/modele.php');
 require_once('Vue/vue.php');
 
 
+
+	function CtlAccueil(){
+		afficherAccueil();
+	}
+
+
 	function CtlTesterConnexion($login,$mgp,$grade){
 		if(!empty($login) &&!empty($mdp)){
 			if(testConnexion($login,$mdp,$grade)){
 				afficherPage($grade);
 			}
 			else{
-				throw new Exception('Login ou mot de passe incorrect. Veulliez réessayer.')
+				throw new Exception('Login ou mot de passe incorrect. Veulliez réessayer.');
 			}
+		}
+		else{
+			throw new Exception('champ login ou mot de passe vide');
 		}
 	}
 
@@ -19,12 +28,20 @@ require_once('Vue/vue.php');
 		if(!empty($nom) && !empty($prenom) && !empty($adresse) && !empty($tel) && !empty($dateNaissance) && !empty($depnaissance) && !empty($nSecu)){
 			ajouterPatient();
 		}
+		else{
+			throw new Exception('Un des champs est vide');
 	}
 
 	function CtlAfficherSynthese($nSecu){
 		if(!empty($nSecu)){
 			$infoPatient = synthesePatient($nSecu);
+			if ($infoPatient==null){
+				throw new Exception('Numéro incorrect');
+			}
 			afficherSynthese($infoPatient);
+		}
+		else{
+			throw new Exception('champ vide');
 		}
 	}
 
@@ -37,6 +54,9 @@ require_once('Vue/vue.php');
 	function CtlAfficherRendezVousNonPayes($nSecu){
 		if(!empty($nSecu)){
 			$rdvNonPayes=rdvNonPayes($nSecu);
+			if ($rdvNonPayes==null){
+				throw new Exception('Numéro incorrect');
+			}
 			afficherRdvNonPayes($rdvNonPayes);
 		}
 	}	
@@ -56,6 +76,9 @@ require_once('Vue/vue.php');
 	function CtlAfficherEmployes($login,$grade){
 		if (!empty($login)){
 			$login=checkLogin($login);
+			if ($login==null){
+				throw new Exception('login incorrect');
+			}
 			afficherEmployes($login);
 
 		}
