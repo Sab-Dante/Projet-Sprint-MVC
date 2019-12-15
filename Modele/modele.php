@@ -176,3 +176,15 @@
 	$requete->bindValue(':id', $login, PDO::PARAM_INT);
 	$requete->execute();
 	$requete->closeCursor();
+	}
+
+		
+	function ajouterCreneau($date, $hour){
+	$connexion=getConnect();
+	$requete=$connexion->prepare("INSERT INTO emploidutemps(idmedecin,date,heure) VALUES(:id,:date,:heure)");
+	//$$requete->bindValue(':id', $login, PDO::PARAM_INT);
+	$requete->bindValue(':date', $date, PDO::PARAM_STR);
+	$requete->bindValue(':heure', $hour, PDO::PARAM_STR);
+	$requete->execute();
+	$requete->closeCursor();
+	}
