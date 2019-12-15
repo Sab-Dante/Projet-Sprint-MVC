@@ -64,9 +64,11 @@ try{
 	}
 
 	else if (isset($_POST["modifierEmploye"])) {
+		$loginRecherche=$_POST["loginRecherche"]
 		$login=$_POST["modifLogin"];
 		$mdp=$_POST["modifMdp"];
-		CtlModifierEmploye($login,$mdp);
+		$grade=$_POST["grade"];
+		CtlModifierEmploye($loginRecherche,$login,$mdp,$grade);
 	}
 
 	else if (isset($_POST["creerMotif"])) {

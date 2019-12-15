@@ -82,9 +82,9 @@ require_once('Vue/vue.php');
 		}
 	}
 
-	function CtlModifierEmploye($login,$mdp){
+	function CtlModifierEmploye($loginRecherche,$login,$mdp,$grade){
 		if (!empty($login) && !empty($mdp)){
-			modifierEmploye($login,$mdp);
+			modifierEmploye($loginRecherche,$login,$mdp,$grade);
 		}
 	}
 
