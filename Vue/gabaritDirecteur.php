@@ -13,10 +13,10 @@
 		<legend>Creation d'un compte employé</legend>
 		<form action="site.php" method="post">
 			<p>
-				<label>login : </label><input type="text" name="login" /><br/>
+				<label>login : </label><input type="text" name="login" required /><br/>
 			</p>
 			<p>
-				<label>mot de passe : </label><input type="password" name="mdp"/><br/>
+				<label>mot de passe : </label><input type="password" name="mdp" required/><br/>
 			</p>
 			<p>
 				<input type="radio" name="grade" value="Agent" checked><label>Agent</label><br/>
@@ -33,7 +33,7 @@
 		<legend>Modifier un compte employé </legend>
 		<form action="site.php" method="post">
 			<p>
-				<label>Nom de l'employé : </label><input type="text" name="login" required /><br/>
+				<label>Login de l'employé : </label><input type="text" name="loginRecherche" required /><br/>
 			</p>
 			<p>
 				<input type="radio" name="grade" value="Agent" checked><label>Agent</label><br/>
@@ -44,7 +44,7 @@
 				<input type="submit" name="rechercherEmploye" value="Rechercher l'employé"/>
 				<input type="submit" name="modifierEmploye" value="Modifier l'employé coché"/><br/>
 			</p>
-
+<!-- code jss pour afficher deux input type pour le new login et le new mdp name= modifLogin, modifMdp -->
 
     <?php echo $contenu;?>
     	</form>
@@ -54,7 +54,7 @@
     	<legend>Créer un motif de rdv</legend>
     	<form action="site.php" method="post">
     		<p>
-    			<label>Nom du motif : </label><input type="text" name="nom" required /><br/>
+    			<label>Nom du motif : </label><input type="text" name="nomMotif" required /><br/>
     		</p>
     		<p>
     			<label>Consigne : </label><input type="text" name="consigne" /><br/>
@@ -63,7 +63,7 @@
     			<label>Pièce justificative : </label><input type="text" name="piece" /><br/>
     		</p>
     		<p>
-    			<label>Prix : </label><input type="number" name="prix" step="0.01" /><br/>
+    			<label>Prix : </label><input type="number" name="prix" step="0.01" required /><br/>
     		</p>
     		<p>
     			<input type="submit" name="creerMotif" value="Créer un motif" /><br/>
@@ -75,7 +75,7 @@
    		<legend>Modifier un motif de rdv</legend>
    		<form action="site.php" method="post">
    			<p>
-   				<label>Nom du motif à modifier</label><input type="text" name="nomModif" /><br/>
+   				<label>Nom du motif à modifier</label><input type="text" name="nomModif" required /><br/>
    			</p>
    			<p>
    				<label>Nouveau nom du motif</label><input type="text" name="nouveauNom" /><br/>
@@ -99,7 +99,7 @@
     	<legend>Supprimer un motif de rdv </legend>
     	<form action="site.php" method="post">
    			<p>
-   				<label>Nom du motif à supprimer</label><input type="text" name="motifSupprimer" /><br/>
+   				<label>Nom du motif à supprimer</label><input type="text" name="motifSupprimer"  /><br/>
    			</p>
    			<p>
    				<input type="submit" name="supprimerMotif" value="Supprimer le motif" /><br/>
@@ -136,6 +136,8 @@
             <p>
                 <input type="submit" value="Supprimer un médecin" name="supprimerMedecin" /><br/>
             </p>
+      </form>
+    </fieldset>
 
 </body>
 
