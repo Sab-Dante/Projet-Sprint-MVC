@@ -5,7 +5,7 @@
     <title>Page des médecins</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="Vue/style.css" />
-    <script type="text/javascript" src="script_medecin.js"></script>
+    <script type="text/javascript" src="Vue/script_medecin.js"></script>
 
 </head>
 

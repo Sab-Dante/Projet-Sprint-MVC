@@ -132,7 +132,10 @@
             <p>
                 <input type="submit" value="Afficher les médecins" name="afficherMedecins" /><br/>
             </p>
-            <?php echo $contenu;?>
+            <?php 
+    		if(isset($contenu)){
+    		echo $contenu;
+    		}?>
             <p>
                 <input type="submit" value="Supprimer un médecin" name="supprimerMedecin" /><br/>
             </p>
