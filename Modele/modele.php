@@ -11,16 +11,17 @@
 	
 	function testConnexion($login,$mdp,$grade){
 		$res = false;
-		$connexion = getConnect();
-		$requete = $connexion->prepare("SELECT login,motdepasse FROM :grade WHERE login = :login && motdepasse = :mdp ");
+		$connexion=getConnect();
+		$requete=$connexion->prepare("SELECT login,motdepasse FROM $grade WHERE login = :login AND motdepasse = :mdp");
 		$requete->bindValue(':login', $login, PDO::PARAM_STR);
 		$requete->bindValue(':mdp', $mdp, PDO::PARAM_STR);
-		$requete->bindValue(':grade', $grade, PDO::PARAM_STR);
 		$requete->execute();
 		
 		if ($requete->fetch()) {
 			$res=true;
 		}
+
+		return $res;
 	}
 
 	function ajouterEmploye($login,$mdp,$grade){
