@@ -4,7 +4,6 @@ require_once('Controleur/controleur.php');
 
 try{
 	if (isset($_POST["seConnecter"])) {
-		
 		$login = $_POST["login"];
 		$mdp = $_POST['password'];
 		$grade = $_POST['grade'];
@@ -53,43 +52,56 @@ try{
 	}
 
 	else if (isset($_POST["creerEmploye"])) {
-		
-		CtlAjouterEmploye();
+		$login=$_POST['login'];
+		$mdp=$_POST['mdp'];
+		$grade=$_POST['grade'];
+		CtlAjouterEmploye($login,$mdp,$grade);
 	}
 
 	else if (isset($_POST["rechercherEmploye"])) {
-
-		CtlAfficherEmployes();
+		$login=$_POST['loginRecherche'];
+		$grade=$_POST['grade'];
+		CtlAfficherEmployes($login,$grade);
 	}
 
 	else if (isset($_POST["modifierEmploye"])) {
-
-		CtlModifierEmployes();
+		$login=$_POST["modifLogin"];
+		$mdp=$_POST["modifMdp"];
+		CtlModifierEmploye($login,$mdp);
 	}
 
-	else if (isset($_POST["creer_motif"])) {
-
-		CtlAjouterMotif();
+	else if (isset($_POST["creerMotif"])) {
+		$nom=$_POST['nomMotif'];
+		$consigne=$_POST['consigne'];
+		$piece=$_POST['piece'];
+		$prix=$_POST['prix'];
+		CtlCreerMotif($nom,$consigne,$piece,$prix);
 	}
 
 	else if (isset($_POST["modifierMotif"])) {
+		$nom=$_POST['nomModif'];
+		$newNom=$_POST['nouveauNom'];
+		$newConsigne=$_POST['nouvelleConsigne'];
+		$nouvellePiece=$_POST['nouvellePiece'];
+		$nouveauPrix=$_POST['nouveauPrix'];
 
-		CtlModifierMotif();
+		CtlModifierMotif($nom,$newNom,$newConsigne,$nouvellePiece,$nouveauPrix);
 	}
 
 	else if (isset($_POST["supprimerMotif"])) {
-
-		CtlSupprimerMotif();
+		$nom=$_POST['motifSupprimer'];
+		CtlSupprimerMotif($nom);
 	}
 
 	else if (isset($_POST["afficherMotifs"])) {
-
 		CtlAfficherMotifs();
 	}
 
 	else if (isset($_POST["creerMedecin"])) {
-
-		CtlAjouterMedecin();
+		$nom=$_POST['nomMedecin'];
+		$prenom=$_POST['prenomMedecin'];
+		$spe=$_POST['specialite'];
+		CtlCreerMedecin($nom,$prenom,$spe);
 	}
 
 	else if (isset($_POST["afficherMedecins"])) {
@@ -98,8 +110,8 @@ try{
 	}
 
 	else if (isset($_POST["supprimerMedecin"])) {
-
-		CtlSupprimerMedecin();
+		$id=$_POST['idMedecin'];
+		CtlSupprimerMedecin($id);
 	}
 
 

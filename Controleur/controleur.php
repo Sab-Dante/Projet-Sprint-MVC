@@ -36,7 +36,8 @@ require_once('Vue/vue.php');
 
 	function CtlAfficherRendezVousNonPayes($nSecu){
 		if(!empty($nSecu)){
-			afficherRdvNonPayes($nSecu);
+			$rdvNonPayes=rdvNonPayes($nSecu);
+			afficherRdvNonPayes($rdvNonPayes);
 		}
 	}	
 
@@ -44,44 +45,80 @@ require_once('Vue/vue.php');
 
 	}
 
-	function CtlAjouterEmploye(){
+	function CtlAjouterEmploye($login,$mdp,$grade){
+		if (!empty($login) && !empty($mdp)){
+			ajouterEmploye($login,$mdp,$grade);
+		}
+
 
 	}
 
-	function CtlAfficherEmployes(){
+	function CtlAfficherEmployes($login,$grade){
+		if (!empty($login)){
+			$login=checkLogin($login);
+			afficherEmployes($login);
 
+		}
 	}
 
-	function CtlModifierEmployes(){
-
+	function CtlModifierEmploye($login,$mdp){
+		if (!empty($login) && !empty($mdp)){
+			modifierEmploye($login,$mdp);
+		}
 	}
 
-	function CtlAjouterMotif(){
-
+	function CtlCreerMotif($nom,$consigne,$piece,$prix){
+		if (!empty($nom) && !empty($consigne) && !empty($piece) && !empty($prix)){
+			creerMotif($nom,$consigne,$piece,$prix);
+		}
 	}
 
-	function CtlModifierMotif(){
-
+	function CtlModifierMotif($nom,$newNom,$newConsigne,$nouvellePiece,$nouveauPrix){
+		if (!empty($nom) && (!empty($newNom) || !empty($newConsigne) || !empty($nouvellePiece) || !empty($nouveauPrix))){
+			$checkedNom=checkNomMotif($nom);
+			if($nom==null){
+				throw new Exception('Nom du motif incorrect');
+			}
+			else{
+				modifierMotif($newNom,$newConsigne,$nouvellePiece,$nouveauPrix);
+			}
+		}
 	}
 
-	function CtlSupprimerMotif(){
-
+	function CtlSupprimerMotif($nom){
+		if (!empty($nom)){
+			supprimerMotif($nom);
+		}
 	}
 
 	function CtlAfficherMotifs(){
-
+		$motifs=getMotifs();
+		if ($motifs==null){
+			throw new Exception('Aucun motif disponible');
+		}
+		else{
+			afficherMotifs($motifs);
+		}
 	}
 
-	function CtlAjouterMedecin(){
-
+	function CtlCreerMedecin($nom,$prenom,$spe){
+		if (!empty($nom) && !empty($prenom) && !empty($spe)){
+			creerMedecin($nom,$prenom,$spe);
+		}
 	}
 
 	function CtlAfficherMedecins(){
-
+		$medecins=getMedecins();
+		if ($medecins==null){
+			throw new Exception('Aucun médecins enregistrés');
+		}
+		else{
+			afficherMedecins($medecins);
+		}
 	}
 
-	function CtlSupprimerMedecin(){
-
+	function CtlSupprimerMedecin($id){
+		supprimerMedecin($id);
 	}
 
 
