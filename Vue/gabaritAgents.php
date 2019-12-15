@@ -4,14 +4,16 @@
 <head>
     <title>Page des agents</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="Vue/style.css" />
 
 </head>
 
 <body>
 	<h1>Environnement Agents</h1>
 
-	<form action="gabaritAgents.php" method="post" >
+	<?php if(isset($exceptionLevee)){echo '<p class="msgErreurPageAgent">'.$exceptionLevee.'</p>';} ?>
+
+	<form action="site.php" method="post" >
 		<fieldset>
 			<legend>Ajouter nouveau patient</legend>
 			<label for="nomPatient" >Nom :</label><input type="text" name="nomPatient" required /><br/>									<!--Formulaire de création de nouveaux patients-->
@@ -26,15 +28,16 @@
 		</fieldset>
 	</form>
 
-	<form action="synthese.php">
+	<form action="site.php" method="post">
 		<fieldset>
 			<legend>Consulter la synthèse d'un patient</legend>																			<!--Formulaire de consultation de synthèses-->
 			<label for="codeSecuriteSociale" >Numero de sécurité social :</label><input type="text" name="codeSecuriteSociale" required /><br/>
 			<input type="submit" name="envoyerSynthse" value="Consulter" />
+			<?php if(isset($contenuSynthese)){echo $contenuSynthese;}?>
 		</fieldset>
 	</form>
 
-	<form action="gabaritAgents.php" mathod="post" >
+	<form action="site.php" method="post" >
 		<fieldset>
 			<legend>Deposer sur un compte patient</legend>																				<!--Formulaire de depot sur compte patient-->
 			<label for="codeSecuriteSociale">Numero de sécurité social :</label><input type="text" name="codeSecuriteSociale" required /><br/>
@@ -43,7 +46,7 @@
 		</fieldset>
 	</form>
 
-	<form action="gabaritAgents.php" method="post">
+	<form action="site.php" method="post">
 		<fieldset>
 			<legend>Fixer un rendez-vous</legend>																						<!--Formulaire de prise de rendez-vous-->
 			<label for="nomMedecinConsultant">Médecin :</label><input type="text" name="nomMedecinConsultant" required /><br/>
@@ -55,7 +58,7 @@
 		</fieldset>
 	</form>
 
-	<form action="gabaritAgents.php" method="post">
+	<form action="site.php" method="post">
 		<fieldset>														
 			<legend>Visualiser les rendez-vous en attente de payement</legend>
 			<label for="codeSecuriteSociale">Numero de sécurité social :</label><input type="text" name="codeSecuriteSociale" required/><br/>
