@@ -62,16 +62,25 @@
 		$res = $requete->fetchall();
 		
 		$requete->closeCursor();
-		return $res;
 	}
 
 	function ajouterMontant($nSecu,$montant){
-
-
+		$connexion=getConnect();
+		$requete=$connexion->prepare("UPDATE patient SET solde = solde + :montant WHERE nss=:nSecu");
+		$requete->bindValue(':montant', $montant, PDO::PARAM_STR);
+		$requete->bindValue(':nSecu', $nSecu, PDO::PARAM_STR);
+		$requete->execute();
+		
+		$requete->closeCursor();
 	}
-	function rdvNonPayes($nSecu){
-
-
+	function getRdvNonPayes($nSecu){
+		$connexion=getConnect();
+		$requete=$connexion->prepare("SELECT * FROM rendezvous WHERE nssRdv=:nSecu AND enAttenteDePayement=1");
+		$requete->bindValue(':nSecu', $nSecu, PDO::PARAM_STR);
+		$requete->execute();
+		$res = $requete->fetchall();
+		$requete->closeCursor();
+		return $res;
 	}
 
 	//Fonctions du DIRECTEUR// :
@@ -171,8 +180,9 @@
 
 
 	function supprimerMedecin($id){
-	$connexion=getConnect();
-	$requete=$connexion->prepare("DELETE * FROM medecin WHERE id=:id");
-	$requete->bindValue(':id', $login, PDO::PARAM_INT);
-	$requete->execute();
-	$requete->closeCursor();
+		$connexion=getConnect();
+		$requete=$connexion->prepare("DELETE * FROM medecin WHERE id=:id");
+		$requete->bindValue(':id', $login, PDO::PARAM_INT);
+		$requete->execute();
+		$requete->closeCursor();
+	}

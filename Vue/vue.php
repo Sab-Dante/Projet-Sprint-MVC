@@ -24,6 +24,14 @@
 		require_once('gabaritAgents.php');
 	}
 
+	function afficherRdvNonPayes($rdvNonPayes){
+		$rendezVousEnAttenteDePayement='';
+		for($i=0 ; $i<count($rdvNonPayes) ; $i+=1) {
+					$rendezVousEnAttenteDePayement.= '<p class="rdvNonPaye">Medecin : '.$rdvNonPayes[$i][2].'<br/> Specialité : '.$rdvNonPayes[$i][3].'<br/> date : '.$rdvNonPayes[$i][4].'<br/>Heure :'.$rdvNonPayes[$i][5].'<br/><form action="site.php" method="post"><input type="submit" name="reglerRdv" value="Régler ce rendez-vous" /><form></p>';
+				}
+		require_once('gabaritAgents.php');
+	}
+
 	function afficherErreur($msg){
  		echo $msg;
 	}
