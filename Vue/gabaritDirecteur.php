@@ -4,7 +4,7 @@
 <head>
     <title>Page du directeur</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="Vue/style.css" />
 
 </head>
 

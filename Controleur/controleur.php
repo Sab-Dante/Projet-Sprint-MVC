@@ -21,25 +21,33 @@ require_once('Vue/vue.php');
 		}
 	}
 
-	function CtlNouveauPatient($nom,$prenom,$adresse,$tel,$dateNaissance,$depnaissance,$nSecu){
-		if(!empty($nom) && !empty($prenom) && !empty($adresse) && !empty($tel) && !empty($dateNaissance) && !empty($depnaissance) && !empty($nSecu)){
-			ajouterPatient();
+	function CtlNouveauPatient($nom,$prenom,$adresse,$tel,$dateNaissance,$depNaissance,$nSecu){
+		if(!empty($nom) && !empty($prenom) && !empty($adresse) && !empty($tel) && !empty($dateNaissance) && !empty($depNaissance) && !empty($nSecu)){
+			if(nssLibre($nSecu)){
+					ajouterPatient($nom,$prenom,$adresse,$tel,$dateNaissance,$depNaissance,$nSecu);
+					afficherPage('Agent');
+				}
+			else{
+				afficherPage('Agent','Ce patient existe déjà.');
+			}
 		}
 		else{
-			throw new Exception('Un des champs est vide');
+			afficherPage('Agent','Un des champs est vide');
 		}
 	}
 
 	function CtlAfficherSynthese($nSecu){
 		if(!empty($nSecu)){
-			$infoPatient = synthesePatient($nSecu);
-			if ($infoPatient==null){
-				throw new Exception('Numéro incorrect');
+			if (!nssLibre($nSecu)){
+				$infoPatient = getSynthesePatient($nSecu);
+				afficherSynthese($infoPatient);	
 			}
-			afficherSynthese($infoPatient);
+			else{
+				afficherPage('Agent','Ce numero de sécurité sociale n\'est pas enregistré');
+			}
 		}
 		else{
-			throw new Exception('champ vide');
+			afficherPage('Agent','Le champ est vide');
 		}
 	}
 
@@ -60,7 +68,11 @@ require_once('Vue/vue.php');
 	}	
 
 	function CtlBloquerCreneau(){
+		foreach ($date as $key => $value) {
+			ajouterCreneau($value, $heure[$key]);
+			
 
+	 }
 	}
 
 	function CtlAjouterEmploye($login,$mdp,$grade){

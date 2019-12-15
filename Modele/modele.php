@@ -15,24 +15,56 @@
 		$requete->bindValue(':login', $login, PDO::PARAM_STR);
 		$requete->bindValue(':mdp', $mdp, PDO::PARAM_STR);
 		$requete->execute();
+		$nbr = $requete->rowCount();
 		
-		if ($requete->fetch()) {
+		if ($nbr == 1) {
 			$res=true;
+		}
+		$requete->closeCursor();
+		return $res;
+	}
+
+	function nssLibre($nSecu){
+		$res = false;
+
+		$connexion=getConnect();
+		$requete=$connexion->prepare("SELECT * FROM patient WHERE nss=:nSecu");
+		$requete->bindValue(':nSecu', $nSecu, PDO::PARAM_STR);
+		$requete->execute();
+		$nbr = $requete->rowCount();
+
+		if($nbr==0){
+			$res = true;
 		}
 
 		return $res;
 	}
 
-	//Fonctions de l'AGENT d'accueil//	
-
-	function ajouterPatient(){
-
-
+	function ajouterPatient($nom,$prenom,$adresse,$tel,$dateNaissance,$depNaissance,$nSecu){
+		$connexion=getConnect();
+		$requete=$connexion->prepare("INSERT INTO patient(NSS,nom,prenom,adresse,numtel,datenaissance,depnaissance) VALUES(:nSecu,:nom,:prenom,:adresse,:tel,:dateNaissance,:depNaissance)");
+		$requete->bindValue(':nSecu', $nSecu, PDO::PARAM_STR);
+		$requete->bindValue(':nom', $nom, PDO::PARAM_STR);
+		$requete->bindValue(':prenom', $prenom, PDO::PARAM_STR);
+		$requete->bindValue(':adresse', $adresse, PDO::PARAM_STR);
+		$requete->bindValue(':tel', $tel, PDO::PARAM_STR);
+		$requete->bindValue(':dateNaissance', $dateNaissance, PDO::PARAM_STR);
+		$requete->bindValue(':depNaissance', $depNaissance, PDO::PARAM_STR);
+		$requete->execute();
+		$requete->closeCursor();
 	}
-	function synthesePatient($nSecu){
 
-
+	function getSynthesePatient($nSecu){
+		$connexion=getConnect();
+		$requete=$connexion->prepare("SELECT * FROM patient WHERE nss=:nSecu");
+		$requete->bindValue(':nSecu', $nSecu, PDO::PARAM_STR);
+		$requete->execute();
+		$res = $requete->fetchall();
+		
+		$requete->closeCursor();
+		return $res;
 	}
+
 	function ajouterMontant($nSecu,$montant){
 
 
@@ -139,6 +171,17 @@
 	$connexion=getConnect();
 	$requete=$connexion->prepare("DELETE * FROM medecin WHERE id=:id");
 	$requete->bindValue(':id', $login, PDO::PARAM_INT);
+	$requete->execute();
+	$requete->closeCursor();
+	}
+
+		
+	function ajouterCreneau($date, $hour){
+	$connexion=getConnect();
+	$requete=$connexion->prepare("INSERT INTO emploidutemps(idmedecin,date,heure) VALUES(:id,:date,:heure)");
+	//$$requete->bindValue(':id', $login, PDO::PARAM_INT);
+	$requete->bindValue(':date', $date, PDO::PARAM_STR);
+	$requete->bindValue(':heure', $hour, PDO::PARAM_STR);
 	$requete->execute();
 	$requete->closeCursor();
 	}

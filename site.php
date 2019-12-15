@@ -17,10 +17,10 @@ try{
 		$adresse = $_POST['adresse'];
 		$tel = $_POST['numTel'];
 		$dateNaissance = $_POST['dateNaissance'];
-		$depnaissance = $_POST['depNaissance'];
+		$depNaissance = $_POST['depNaissance'];
 		$nSecu = $_POST['numSecuriteSociale'];
 
-		CtlNouveauPatient($nom,$prenom,$adresse,$tel,$dateNaissance,$depnaissance,$nSecu);
+		CtlNouveauPatient($nom,$prenom,$adresse,$tel,$dateNaissance,$depNaissance,$nSecu);
 	}
 
 	else if (isset($_POST["envoyerSynthse"])) {
@@ -45,9 +45,10 @@ try{
 		CtlAfficherRendezVousNonPayes($nSecu);	
 	}
 
-	else if (isset($_POST["ajouter_creneau"])) {
-
-		CtlBloquerCreneau();
+	else if (isset($_POST["ajouterCreneau"])) {
+		$date = $_POST['date'];
+		$heure = $_POST['hour'];
+		CtlBloquerCreneau($date, $hour);		
 	}
 
 	else if (isset($_POST["creerEmploye"])) {
