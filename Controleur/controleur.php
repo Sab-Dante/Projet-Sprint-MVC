@@ -73,7 +73,7 @@ require_once('Vue/vue.php');
 
 	function CtlAfficherEmployes($login,$grade){
 		if (!empty($login)){
-			$login=checkLogin($login);
+			$login=checkLogin($login,$grade);
 			if ($login==null){
 				throw new Exception('login incorrect');
 			}
@@ -91,6 +91,9 @@ require_once('Vue/vue.php');
 	function CtlCreerMotif($nom,$consigne,$piece,$prix){
 		if (!empty($nom) && !empty($consigne) && !empty($piece) && !empty($prix)){
 			creerMotif($nom,$consigne,$piece,$prix);
+		}
+		else{
+			throw new Exception('un des champs vide');
 		}
 	}
 
@@ -140,6 +143,8 @@ require_once('Vue/vue.php');
 
 	function CtlSupprimerMedecin($id){
 		supprimerMedecin($id);
+		echo "Medecin supprimé";
+		afficherPage('Directeur');
 	}
 
 
