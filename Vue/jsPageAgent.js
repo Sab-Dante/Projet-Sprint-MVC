@@ -1,6 +1,5 @@
 
-function jsAfficherMotifsAgent{
-	var idMotifs= document.getElementById('motifsAgent');
-
-	idMotifs.style.display=block;
+function jsAfficherMotifsAgent(){
+	var idMotifs= document.getElementById("motifsAgent");
+	idMotifs.style.display = "";
 }

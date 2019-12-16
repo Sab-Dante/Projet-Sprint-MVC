@@ -148,6 +148,7 @@
 		$motifs=$requete->fetchall();
 		$requete->closeCursor();
 		return $motifs;
+	}
 
 	function checkNomMotif($nom){
 		$connexion=getConnect();

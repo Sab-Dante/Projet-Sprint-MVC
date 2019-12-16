@@ -7,6 +7,7 @@ try{
 		$login = $_POST["login"];
 		$mdp = $_POST['mdp'];
 		$grade = $_POST['grade'];
+		CtlAfficherMotifsAgent();
 		CtlTesterConnexion($login,$mdp,$grade);
 	}
 	
@@ -19,14 +20,14 @@ try{
 		$dateNaissance = $_POST['dateNaissance'];
 		$depNaissance = $_POST['depNaissance'];
 		$nSecu = $_POST['numSecuriteSociale'];
-
+		CtlAfficherMotifsAgent();
 		CtlNouveauPatient($nom,$prenom,$adresse,$tel,$dateNaissance,$depNaissance,$nSecu);
 	}
 
 	else if (isset($_POST["envoyerSynthse"])) {
 
 		$nSecu = $_POST['codeSecuriteSociale'];
-
+		CtlAfficherMotifsAgent();
 		CtlAfficherSynthese($nSecu);
 	}
 
@@ -34,14 +35,14 @@ try{
 
 		$nSecu = $_POST['codeSecuriteSociale'];
 		$montant = intval($_POST['montantDepot']);
-
+		CtlAfficherMotifsAgent();
 		CtlDepot($nSecu,$montant);
 	}
 
 	else if (isset($_POST["visualiserRendezVous"])) {
 
 		$nSecu = $_POST['codeSecuriteSociale'];
-
+		CtlAfficherMotifsAgent();
 		CtlAfficherRendezVousNonPayes($nSecu);	
 	}
 

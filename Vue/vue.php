@@ -31,7 +31,7 @@
 		}
 		else{
 			for($i=0 ; $i<count($motifs) ; $i+=1) {
-				$listeMotifs.='<div class="motif" onblur="jsAfficherMotifsAgent()"><p>Nom : '.$motifs[$i][0].'<br/> Consignes : '.$motifs[$i][1].'<br/> Pièces à fournir : '.$motifs[$i][2].'<br/>Prix :'.$motifs[$i][3].'€<br/></div>';
+				$listeMotifs.='<div class="motif"><p>Nom : '.$motifs[$i][0].'<br/> Consignes : '.$motifs[$i][1].'<br/> Pièces à fournir : '.$motifs[$i][2].'<br/>Prix :'.$motifs[$i][3].'€<br/></div>';
 			}
 		}
 		require_once('gabaritAgents.php');
