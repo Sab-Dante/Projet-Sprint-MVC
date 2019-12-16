@@ -37,6 +37,7 @@ require_once('Vue/vue.php');
 	}
 
 	function CtlAfficherSynthese($nSecu){
+		
 		if(!empty($nSecu)){
 			if (!nssLibre($nSecu)){
 				$infoPatient = getSynthesePatient($nSecu);
@@ -49,6 +50,7 @@ require_once('Vue/vue.php');
 		else{
 			afficherPage('Agent','Le champ est vide');
 		}
+		
 	}
 
 	function CtlAfficherMotifsAgent(){
