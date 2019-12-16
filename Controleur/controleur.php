@@ -85,7 +85,8 @@ require_once('Vue/vue.php');
 
 	function CtlBloquerCreneau(){
 		foreach ($date as $key => $value) {
-			ajouterCreneau($value, $heure[$key]);
+			echo $value " - " $heure[$key];
+			//ajouterCrenea u($value, $heure[$key]);
 			
 
 	 }
