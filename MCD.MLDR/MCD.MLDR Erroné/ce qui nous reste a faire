@@ -1,0 +1,12 @@
+
+Si lors de la creation du patient le depNaissance est 99+x afficher une nvl zone de texte affichant les differents pays
+modifier les patients
+revoir le type de heure pour fixer rdv dans la bdd
+synthese du patient doit aussi afficher tout ses rdv dans cette clinique
+trouver le nss selon nom/date de naissance
+
+
+----------------------------------
+		DIRECTEUR
+
+Modifier les logins/mdp pour directeur et creer ou supprimer les agents/medecins
