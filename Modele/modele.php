@@ -60,8 +60,9 @@
 		$requete->bindValue(':nSecu', $nSecu, PDO::PARAM_STR);
 		$requete->execute();
 		$res = $requete->fetchall();
-		
+
 		$requete->closeCursor();
+		return $res;
 	}
 
 	function ajouterMontant($nSecu,$montant){
@@ -73,6 +74,7 @@
 		
 		$requete->closeCursor();
 	}
+
 	function getRdvNonPayes($nSecu){
 		$connexion=getConnect();
 		$requete=$connexion->prepare("SELECT * FROM rendezvous WHERE nssRdv=:nSecu AND enAttenteDePayement=1");
@@ -146,7 +148,6 @@
 		$motifs=$requete->fetchall();
 		$requete->closeCursor();
 		return $motifs;
-	}
 
 	function checkNomMotif($nom){
 		$connexion=getConnect();

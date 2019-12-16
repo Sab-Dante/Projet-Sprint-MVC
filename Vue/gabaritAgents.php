@@ -54,8 +54,11 @@
 			<label for="specialiteMedecinConsultant">Specialité :</label><input type="text" name="specialiteMedecinConsultant" required /><br/>
 			<label for="dateRdv">Date :</label><input type="date" name="dateRdv" required /><br/>
 			<label for="heureRdv">Heure :</label><input type="time" name="heureRdv" step="3600" required /><br/>
-			<input type="submit" name="afficherMotifs" value="Proposer" />
-			<input type="reset" name="effacerFormRdv" /><br/>
+			<div id="motifsAgent">
+				<?php if(isset($listeMotifs)){echo $listeMotifs;} ?>
+			</div>
+			<input type="submit" name="afficherMotifs" id="validerRdv" value="Valider rendez-vous" />
+			<input type="reset" name="effacerFormRdv"/><br/>
 		</fieldset>
 	</form>
 
