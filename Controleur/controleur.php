@@ -51,6 +51,11 @@ require_once('Vue/vue.php');
 		}
 	}
 
+	function CtlAfficherMotifsAgent(){
+		$motifs = getMotifs();
+		afficherMotifs($motifs);
+	}
+
 	function CtlDepot($nSecu,$montant){
 		if(!empty($nSecu) && !empty($montant)){
 			ajouterMontant($nSecu,$montant);
