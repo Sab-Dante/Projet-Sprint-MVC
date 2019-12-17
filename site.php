@@ -106,37 +106,29 @@ try{
 		CtlCreerMotif($nom,$consigne,$piece,$prix);
 	}
 
+
 	else if (isset($_POST["modifierMotif"])) {
+		$nom=$_POST['nomModif'];
+
+		CtlModifierMotif($nom);
+	}
+
+	else if (isset($_POST["validerModif"])){
 		$nom=$_POST['nomModif'];
 		$newNom=$_POST['nouveauNom'];
 		$newConsigne=$_POST['nouvelleConsigne'];
 		$nouvellePiece=$_POST['nouvellePiece'];
 		$nouveauPrix=$_POST['nouveauPrix'];
 
-		CtlModifierMotif($nom,$newNom,$newConsigne,$nouvellePiece,$nouveauPrix);
+		CtlValiderModif($nom,$newNom,$newConsigne,$nouvellePiece,$nouveauPrix);
 	}
 
 	else if (isset($_POST["supprimerMotif"])) {
 		$nom=$_POST['motifSupprimer'];
 		CtlSupprimerMotif($nom);
 	}
-
-	else if (isset($_POST["verifRDV"])) {
-		$nss = $_POST['codeSecuriteSociale'];
-		$login = $_POST['nomMedecinConsultant'];  //ACTUELLEMENT L'ID  --> A MODIFIER PAR LE NOM
-		$specialite = $_POST['specialiteMedecinConsultant'];
-		$date = $_POST['dateRdv'];
-		$hour = $_POST['heureRdv'];
-		CtlVerifRDV($nss, $login, $specialite, $date, $hour);
-	}
-	else if (isset($_POST["priseRDV"])){
-		$nss = $_POST['codeSecuriteSociale'];
-		$login = $_POST['nomMedecinConsultant'];  //ACTUELLEMENT L'ID  --> A MODIFIER PAR LE NOM
-		$specialite = $_POST['specialiteMedecinConsultant'];
-		$date = $_POST['dateRdv'];
-		$hour = $_POST['heureRdv'];
-		$motif = $_POST['motifs'];
-		CtlPriseRDV($nss, $login, $specialite, $date, $hour, $motif);
+	else if (isset($_POST["afficherMotifs"])) {
+		CtlAfficherMotifs();
 	}
 
 	else if (isset($_POST["creerMedecin"])) {
