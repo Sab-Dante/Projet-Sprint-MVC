@@ -19,6 +19,7 @@
 			<input type="radio" name="grade" value="Medecin"><label>Médecin</label><br/>
 			<input type="radio" name="grade" value="Directeur"><label>Directeur</label><br/>
 			<input type="submit" name="seConnecter" value="Connexion" />
+			<?php if(isset($msgErreurAccueil)){echo $msgErreurAccueil;} ?>
 		</fieldset>
 	</form>
 

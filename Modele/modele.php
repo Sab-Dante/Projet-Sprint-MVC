@@ -40,12 +40,28 @@
 		return $res;
 	}
 
-	function ajouterPatient($nom,$prenom,$adresse,$tel,$dateNaissance,$depNaissance,$nSecu){
+	function ajouterPatient($nom,$prenom,$pays,$adresse,$tel,$dateNaissance,$depNaissance,$nSecu){
 		$connexion=getConnect();
-		$requete=$connexion->prepare("INSERT INTO patient(NSS,nom,prenom,adresse,numtel,datenaissance,depnaissance) VALUES(:nSecu,:nom,:prenom,:adresse,:tel,:dateNaissance,:depNaissance)");
+		$requete=$connexion->prepare("INSERT INTO patient(NSS,nom,prenom,pays,adresse,numtel,datenaissance,depnaissance) VALUES(:nSecu,:nom,:prenom,:pays,:adresse,:tel,:dateNaissance,:depNaissance)");
 		$requete->bindValue(':nSecu', $nSecu, PDO::PARAM_STR);
 		$requete->bindValue(':nom', $nom, PDO::PARAM_STR);
 		$requete->bindValue(':prenom', $prenom, PDO::PARAM_STR);
+		$requete->bindValue(':pays', $pays, PDO::PARAM_STR);
+		$requete->bindValue(':adresse', $adresse, PDO::PARAM_STR);
+		$requete->bindValue(':tel', $tel, PDO::PARAM_STR);
+		$requete->bindValue(':dateNaissance', $dateNaissance, PDO::PARAM_STR);
+		$requete->bindValue(':depNaissance', $depNaissance, PDO::PARAM_STR);
+		$requete->execute();
+		$requete->closeCursor();
+	}
+
+	function modifierPatient($nom,$prenom,$pays,$adresse,$tel,$dateNaissance,$depNaissance,$nSecu){
+		$connexion=getConnect();
+		$requete=$connexion->prepare("UPDATE patient SET nom=:nom, prenom=:prenom, pays=:pays, adresse=:adresse, numTel=:tel, dateNaissance=:dateNaissance, depNaissance=:depNaissance WHERE nss=:nSecu");
+		$requete->bindValue(':nSecu', $nSecu, PDO::PARAM_STR);
+		$requete->bindValue(':nom', $nom, PDO::PARAM_STR);
+		$requete->bindValue(':prenom', $prenom, PDO::PARAM_STR);
+		$requete->bindValue(':pays', $pays, PDO::PARAM_STR);
 		$requete->bindValue(':adresse', $adresse, PDO::PARAM_STR);
 		$requete->bindValue(':tel', $tel, PDO::PARAM_STR);
 		$requete->bindValue(':dateNaissance', $dateNaissance, PDO::PARAM_STR);
@@ -57,6 +73,17 @@
 	function getSynthesePatient($nSecu){
 		$connexion=getConnect();
 		$requete=$connexion->prepare("SELECT * FROM patient WHERE nss=:nSecu");
+		$requete->bindValue(':nSecu', $nSecu, PDO::PARAM_STR);
+		$requete->execute();
+		$res = $requete->fetchall();
+
+		$requete->closeCursor();
+		return $res;
+	}
+
+	function getSolde($nSecu){
+		$connexion=getConnect();
+		$requete=$connexion->prepare("SELECT solde FROM patient WHERE nss=:nSecu");
 		$requete->bindValue(':nSecu', $nSecu, PDO::PARAM_STR);
 		$requete->execute();
 		$res = $requete->fetchall();
@@ -83,6 +110,35 @@
 		$res = $requete->fetchall();
 		$requete->closeCursor();
 		return $res;
+	}
+
+	function getPrix($nomMotif){
+		$connexion=getConnect();
+		$requete=$connexion->prepare("SELECT prix FROM motif WHERE nom=:nomMotif");
+		$requete->bindValue(':nomMotif', $nomMotif, PDO::PARAM_STR);
+		$requete->execute();
+		$res = $requete->fetchall();
+		$requete->closeCursor();
+		return $res;		
+	}
+
+	function debiter($nSecu,$prix){
+		$connexion=getConnect();
+		$requete=$connexion->prepare("UPDATE patient SET solde = solde - :prix WHERE nss=:nSecu");
+		$requete->bindValue(':prix', $prix, PDO::PARAM_STR);
+		$requete->bindValue(':nSecu', $nSecu, PDO::PARAM_STR);
+		$requete->execute();
+		
+		$requete->closeCursor();
+	}
+
+	function payementEffectué($idRdv){
+		$connexion=getConnect();
+		$requete=$connexion->prepare("UPDATE rendezvous SET enAttenteDePayement=0 WHERE idrendezvous=:idRdv");
+		$requete->bindValue(':idRdv', $idRdv, PDO::PARAM_STR);
+		$requete->execute();
+		
+		$requete->closeCursor();		
 	}
 
 	//Fonctions du DIRECTEUR// :
