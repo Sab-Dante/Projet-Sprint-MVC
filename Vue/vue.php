@@ -117,10 +117,6 @@
 
 		}
 		require_once('gabaritDirecteur.php');
-		
-	function reglerRdvNonPaye($id){
-
-	}
 
 	function afficherErreur($msg){
  		echo $msg;
