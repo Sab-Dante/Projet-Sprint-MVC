@@ -281,6 +281,7 @@
 	function getMotif($nom){
 		$connexion=getConnect();
 		$requete=$connexion->prepare("SELECT * FROM motif WHERE nom=:nom");
+		$requete->bindValue(':nom', $nom, PDO::PARAM_STR);
 		$requete->execute();
 		$motif=$requete->fetchall();
 		$requete->closeCursor();
@@ -297,16 +298,17 @@
 		return $nom;
 	}
 
-	function modifierMotif($newNom,$newConsigne,$nouvellePiece,$nouveauPrix){
+	function validerModif($nom,$newNom,$newConsigne,$nouvellePiece,$nouveauPrix){
 		$connexion=getConnect();
-		$requete=$connexion->prepare("UPDATE motif SET nom=:newNom,consigne=:newConsigne,piece=:nouvellePiece,prix=:nouveauPrix");
+		$requete=$connexion->prepare("UPDATE motif SET nom=:newNom,consigne=:newConsigne,pieces=:nouvellePiece,prix=:nouveauPrix WHERE nom=:nom");
+		$requete->bindValue(':nom', $nom, PDO::PARAM_STR);
 		$requete->bindValue(':newNom', $newNom, PDO::PARAM_STR);
 		$requete->bindValue(':newConsigne', $newConsigne, PDO::PARAM_STR);
 		$requete->bindValue(':nouvellePiece', $nouvellePiece, PDO::PARAM_STR);
 		$requete->bindValue(':nouveauPrix', $nouveauPrix, PDO::PARAM_INT);
 		$requete->execute();
 		$requete->closeCursor();
-	}
+	}	
 
 	function supprimerMotif($nom){
 		$connexion=getConnect();
