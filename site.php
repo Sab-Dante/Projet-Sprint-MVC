@@ -7,7 +7,6 @@ try{
 		$login = $_POST["login"];
 		$mdp = $_POST['mdp'];
 		$grade = $_POST['grade'];
-		CtlAfficherMotifsAgent();
 		CtlTesterConnexion($login,$mdp,$grade);
 	}
 	
@@ -47,9 +46,10 @@ try{
 	}
 
 	else if (isset($_POST["ajouterCreneau"])) {
+		$login = $_POST['nom_medecin'];  //ID AU LIEU DE NOM
 		$date = $_POST['date'];
-		$heure = $_POST['hour'];
-		CtlBloquerCreneau($date, $hour);		
+		$hour = $_POST['hour'];
+		CtlBloquerCreneau($login ,$date, $hour);		
 	}
 
 	else if (isset($_POST["creerEmploye"])) {
@@ -96,8 +96,22 @@ try{
 		CtlSupprimerMotif($nom);
 	}
 
-	else if (isset($_POST["afficherMotifs"])) {
-		CtlAfficherMotifs();
+	else if (isset($_POST["verifRDV"])) {
+		$nss = $_POST['codeSecuriteSociale'];
+		$login = $_POST['nomMedecinConsultant'];  //ACTUELLEMENT L'ID  --> A MODIFIER PAR LE NOM
+		$specialite = $_POST['specialiteMedecinConsultant'];
+		$date = $_POST['dateRdv'];
+		$hour = $_POST['heureRdv'];
+		CtlVerifRDV($nss, $login, $specialite, $date, $hour);
+	}
+	else if (isset($_POST["priseRDV"])){
+		$nss = $_POST['codeSecuriteSociale'];
+		$login = $_POST['nomMedecinConsultant'];  //ACTUELLEMENT L'ID  --> A MODIFIER PAR LE NOM
+		$specialite = $_POST['specialiteMedecinConsultant'];
+		$date = $_POST['dateRdv'];
+		$hour = $_POST['heureRdv'];
+		$motif = $_POST['motifs'];
+		CtlPriseRDV($nss, $login, $specialite, $date, $hour, $motif);
 	}
 
 	else if (isset($_POST["creerMedecin"])) {

@@ -107,16 +107,88 @@
 		$requete->closeCursor();
 
 	}
+	//////////////////////////////////////////////
 
-	function ajouterCreneau($date, $hour){
+	function ajouterCreneau($login,$date, $hour){
 		$connexion=getConnect();
 		$requete=$connexion->prepare("INSERT INTO emploidutemps(idmedecin,date,heure) VALUES(:id,:date,:heure)");
-		//$$requete->bindValue(':id', $login, PDO::PARAM_INT);
+		$requete->bindValue(':id', $login, PDO::PARAM_INT);
 		$requete->bindValue(':date', $date, PDO::PARAM_STR);
 		$requete->bindValue(':heure', $hour, PDO::PARAM_STR);
 		$requete->execute();
 		$requete->closeCursor();
 	}
+	function checkCreneau($login,$date, $hour){
+		$connexion=getConnect();
+		$requete=$connexion->prepare("SELECT COUNT(*) from emploidutemps where idmedecin=:id and date=:date and heure=:heure UNION SELECT COUNT(*) from rendezvous where nommedecin=:id and date=:date and heure=:heure");
+		$requete->bindValue(':id', $login, PDO::PARAM_INT);
+		$requete->bindValue(':date', $date, PDO::PARAM_STR);
+		$requete->bindValue(':heure', $hour, PDO::PARAM_STR);
+		$requete->execute();
+		$existe=$requete->fetch();
+		$requete->closeCursor();
+		return $existe;
+	}
+	
+	function recupMotif(){
+		$connexion=getConnect();
+		$requete=$connexion->prepare("SELECT nom from motif");
+		$requete->execute();
+		$motif=$requete->fetchall();
+		$requete->closeCursor();
+		return $motif;
+
+	}
+
+
+	function checkMedecins($login){
+		$connexion=getConnect();
+		$requete=$connexion->prepare("SELECT login from medecin WHERE idmedecin=:login");
+		$requete->bindValue(':login', $login, PDO::PARAM_STR);
+		$requete->execute();
+		$login=$requete->fetch();
+		$requete->closeCursor();
+		return $login;
+
+	}
+
+
+	function specialiteMedecin($login){
+		$connexion=getConnect();
+		$requete=$connexion->prepare("SELECT specialite from medecin WHERE idmedecin=:login");
+		$requete->bindValue(':login', $login, PDO::PARAM_STR);
+		$requete->execute();
+		$spe=$requete->fetch();
+		$requete->closeCursor();
+		return $spe;
+	}
+
+	function ajouterRDV($nss, $login, $specialite,$date, $hour, $motif){
+		$connexion=getConnect();
+		$requete=$connexion->prepare("INSERT INTO rendezvous(idrendezvous,nssrdv,nommedecin,specialite,date,heure,nommotif,enattentedepayement) VALUES(0,:nss,:login,:specialite,:date,:hour,:motif,1)");
+		$requete->bindValue(':nss', $nss, PDO::PARAM_STR);
+		$requete->bindValue(':login', $login, PDO::PARAM_STR);
+		$requete->bindValue(':specialite', $specialite, PDO::PARAM_STR);
+		$requete->bindValue(':date', $date, PDO::PARAM_STR);
+		$requete->bindValue(':hour', $hour, PDO::PARAM_INT);
+		$requete->bindValue(':motif', $motif, PDO::PARAM_STR);
+		$requete->execute();
+		$requete->closeCursor();
+	}
+
+	function checkRDV($nss, $date, $hour){
+		$connexion=getConnect();
+		$requete=$connexion->prepare("SELECT COUNT(*) from rendezvous where nssrdv=:nss and date=:date and heure=:heure");
+		$requete->bindValue(':nss', $nss, PDO::PARAM_INT);
+		$requete->bindValue(':date', $date, PDO::PARAM_STR);
+		$requete->bindValue(':heure', $hour, PDO::PARAM_STR);
+		$requete->execute();
+		$existe=$requete->fetch();
+		$requete->closeCursor();
+		return $existe;
+	}
+	
+	/////////////////////////////////////////////
 
 	function modifierEmploye($loginRecherche,$login,$mdp,$grade){
 		$connexion=getConnect();

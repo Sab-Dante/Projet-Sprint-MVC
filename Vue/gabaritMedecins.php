@@ -10,9 +10,13 @@
 </head>
 
 <body>
-	<form action="Vue/gabaritMedecins.php" method="post">
+	<?php if(isset($exceptionLevee)){echo '<p class="msgErreurPageAgent">'.$exceptionLevee.'</p>';} ?>
+	<form action="site.php" method="post">
 		<fieldset><legend>Tâches administratives</legend>
+			<label>Nom médecin : </label>
+			<input type="text" name="nom_medecin">
 			<label>Nombre de créneaux : </label>
+			
 			<input style="width:9%;" type="text" name="nb_creneau" onBlur="ajouter_zone()">
 			<div id="ajouter"></div>
 

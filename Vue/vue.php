@@ -51,6 +51,20 @@
 		require_once('gabaritAgents.php');
 	}
 
+	function listeMotif($tab_motif){
+		$listeMotifs = '<select name="motifs">';
+		$bouton = '<input type="submit" name="priseRDV" value="Prendre rendez-vous" />';
+		for($i=0; $i<count($tab_motif); $i++){
+			$listeMotifs.= '<option value="'.$tab_motif[$i][0].'">'.$tab_motif[$i][0].'</option>';
+		}
+		$listeMotifs.='</select>';
+		require_once('gabaritAgents.php');
+
+	}
+	
+
+	
+
 	function afficherErreur($msg){
  		echo $msg;
 	}

@@ -53,9 +53,34 @@ require_once('Vue/vue.php');
 		
 	}
 
-	function CtlAfficherMotifsAgent(){
-		$motifs = getMotifs();
-		afficherMotifs($motifs);
+	function CtlVerifRDV($nss, $login, $specialite, $date, $hour){
+		
+		if(nssLibre($nss)){
+			afficherPage('Agent','Patient inconnu, veuillez l\'inscrire');
+		}
+		else{
+			$spe_medecin = specialiteMedecin($login);
+			if($spe_medecin[0] != $specialite) {
+				afficherPage('Agent','Le medecin n\'a pas cette spécialité');
+
+			}
+			else{
+
+				if ((checkCreneau($login, $date, $hour)[0] == 0) && (checkRDV($nss, $date, $hour)[0] == 0)){
+					$tab_motif = recupMotif();
+					listeMotif($tab_motif);	
+				}
+				else{
+					afficherPage('Agent','Le créneau est déjà pris');
+				}
+			}
+		}
+
+
+	}
+	function CtlPriseRDV($nss, $login, $specialite, $date, $hour, $motif){
+		ajouterRDV($nss, $login, $specialite,$date, $hour, $motif);
+		afficherPage('Agent','Ajout réussi !');
 	}
 
 	function CtlDepot($nSecu,$montant){
@@ -83,14 +108,28 @@ require_once('Vue/vue.php');
 		}
 	}	
 
-	function CtlBloquerCreneau(){
-		foreach ($date as $key => $value) {
-			echo $value " - " $heure[$key];
-			//ajouterCrenea u($value, $heure[$key]);
-			
+	//Bloquer les créneaux pour le médecin
 
-	 }
+	function CtlBloquerCreneau($login, $date, $hour){
+		if(checkMedecins($login) != null){
+			foreach ($date as $key => $value) {
+				if (checkCreneau($login,$value, $hour[$key])[0] == 0){
+					ajouterCreneau($login, $value, $hour[$key]);
+				}
+				else{
+					afficherPage('Medecin','Le créneau est déjà pris');
+					
+				}
+			}
+		}
+		else{
+			afficherPage('Medecin','Le médecin n\'existe pas');
+			
+		}
+		afficherPage('Medecin');
+		
 	}
+	
 
 	function CtlAjouterEmploye($login,$mdp,$grade){
 		if (!empty($login) && !empty($mdp)){

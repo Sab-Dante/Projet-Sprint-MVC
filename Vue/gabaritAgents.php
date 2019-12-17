@@ -49,17 +49,21 @@
 	<form action="site.php" method="post">
 		<fieldset>
 			<legend>Fixer un rendez-vous</legend>																						<!--Formulaire de prise de rendez-vous-->
-			<label for="codeSecuriteSociale">Numero de sécurité social :</label><input type="text" name="codeSecuriteSociale" required /><br/>
-			<label for="nomMedecinConsultant">Médecin :</label><input type="text" name="nomMedecinConsultant" required /><br/>
-			<label for="specialiteMedecinConsultant">Specialité :</label><input type="text" name="specialiteMedecinConsultant" required /><br/>
-			<label for="dateRdv">Date :</label><input type="date" name="dateRdv" required /><br/>
-			<label for="heureRdv">Heure :</label><input type="time" name="heureRdv" step="3600" required /><br/>
-			<input type="button" name="afficherMotifs" id="consulter" value="Consulter" onclick="jsAfficherMotifsAgent()"/><br/>
-			<div style="display: none ;" id="motifsAgent">
-				<?php if(isset($listeMotifs)){echo $listeMotifs;} ?>
-			</div>
-			<input type="submit" name="afficherMotifs" id="validerRdv" value="Valider rendez-vous" />
+			<label for="codeSecuriteSociale">Numero de sécurité social :</label><input type="text" value="<?php if(isset($_POST['codeSecuriteSociale'])){echo $_POST['codeSecuriteSociale'];}?>" name="codeSecuriteSociale" required /><br/>
+			<label for="nomMedecinConsultant">Médecin :</label><input type="text" value="<?php if(isset($_POST['nomMedecinConsultant'])){echo $_POST['nomMedecinConsultant'];}?>" name="nomMedecinConsultant" required /><br/>
+			<label for="specialiteMedecinConsultant">Specialité :</label><input type="text" value="<?php if(isset($_POST['specialiteMedecinConsultant'])){echo $_POST['specialiteMedecinConsultant'];}?>" name="specialiteMedecinConsultant" required /><br/>
+			<label for="dateRdv">Date :</label><input type="date" value="<?php if(isset($_POST['dateRdv'])){echo $_POST['dateRdv'];}?>" name="dateRdv" required /><br/>
+			<label for="heureRdv">Heure :</label><input type="number" value="<?php if(isset($_POST['heureRdv'])){echo $_POST['heureRdv'];}?>" name="heureRdv" max="23" min="0" required /><br/>
+			<input type="submit" name="verifRDV" id="validerRdv" value="Verifier rendez-vous" />
 			<input type="reset" name="effacerFormRdv"/><br/>
+			
+				
+				<?php if(isset($listeMotifs)){echo $listeMotifs;}?>
+				<?php if(isset($bouton)){echo $bouton;}?>
+				
+    		
+			
+
 		</fieldset>
 	</form>
 
