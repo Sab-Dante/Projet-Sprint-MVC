@@ -230,19 +230,50 @@ require_once('Vue/vue.php');
 		}
 	}
 
-	function CtlModifierMotif($newNom,$newConsigne,$nouvellePiece,$nouveauPrix){
-		if (!empty($newNom) && !empty($newConsigne) && !empty($nouvellePiece) && !empty($nouveauPrix)){
+	function CtlModifierMotif($nom){
+		if (!empty($nom)){
 			$motif=getMotif($nom);
-			modifierMotif($newNom,$newConsigne,$nouvellePiece,$nouveauPrix);
+			if ($motif!=null){
+				afficherPageModifMotif($motif);
+			}
+			else{
+				afficherPage("Directeur","nom de motif incorrect");
+			}
 		}
 		else{
 			afficherPage('Directeur','ERREUR : un des champs vide');
 		}
 	}
 
+	function CtlValiderModif($nom,$newNom,$newConsigne,$nouvellePiece,$nouveauPrix){
+		if (!empty($nom) && !empty($newNom) && !empty($newConsigne) && !empty($nouvellePiece) && !empty($nouveauPrix)){
+			$checkedNom=checkNomMotif($nom);
+			if ($checkedNom!=null){
+				validerModif($nom,$newNom,$newConsigne,$nouvellePiece,$nouveauPrix);
+				afficherPage("Directeur","Motif modifié");
+			}
+			else{
+				afficherPage("Directeur","nom motif incorrect");
+			}
+
+		}
+		else{
+			afficherPage("Directeur","Un des champs est vide");
+		}
+
+
+	}
+
 	function CtlSupprimerMotif($nom){
 		if (!empty($nom)){
-			supprimerMotif($nom);
+			$checkedNom=checkedNomMotif($nom);
+			if ($checkedNom!=null){
+				supprimerMotif($nom);
+				afficherPage("Directeur","Un motif a bien été supprimé");
+			}
+			else{
+				afficherPage("Directeur","Le nom du motif entré n'existe pas");
+			}
 		}
 	}
 
@@ -255,7 +286,7 @@ require_once('Vue/vue.php');
 			afficherMotifsDirecteur($motifs);
 		}
 	}
-
+	
 	function CtlCreerMedecin($login,$mdp,$nom,$prenom,$spe){
 		if (!empty($login) && !empty($mdp) && !empty($nom) && !empty($prenom) && !empty($spe)){
 			creerMedecin($login,$mdp,$nom,$prenom,$spe);
@@ -265,7 +296,7 @@ require_once('Vue/vue.php');
 			afficherPage('Directeur','ERREUR : un des champs vide');
 		}
 	}
-	
+
 	function CtlAfficherMedecins(){
 		$medecins=getEmployes("Medecin");
 		if ($medecins==null){
@@ -287,7 +318,7 @@ require_once('Vue/vue.php');
 				afficherPage('Directeur',"ERREUR : Id incorrect, médecin non trouvé");
 			}
 		}
-	}
+	}	
 
 
 	function CtlErreur($msg){
