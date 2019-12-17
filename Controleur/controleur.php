@@ -85,67 +85,73 @@ require_once('Vue/vue.php');
 
 	function CtlBloquerCreneau(){
 		foreach ($date as $key => $value) {
-			echo $value " - " $heure[$key];
+			//	echo $value " - " $heure[$key];
 			//ajouterCrenea u($value, $heure[$key]);
 			
 
 	 }
 	}
 
-	function CtlAjouterEmploye($login,$mdp,$grade){
+	function CtlCreerEmploye($login,$mdp,$grade){
 		if (!empty($login) && !empty($mdp)){
-			ajouterEmploye($login,$mdp,$grade);
+			creerEmploye($login,$mdp,$grade);
+			afficherPage("Directeur", "Un nouveau employé a été crée");
 		}
 		else{
-			throw new Exception('un champ est vide');
+			afficherPage('Directeur','ERREUR : un champ est vide');
 		}
 
 	}
 
-	function CtlAfficherEmployes($login,$grade){
-		if (!empty($login)){
-			$login=checkLogin($login,$grade);
-			if ($login==null){
-				throw new Exception('login incorrect');
-			}
-			afficherEmployes($login);
-
+	function CtlAfficherEmployes($grade){
+		$listeEmployes=getEmployes($grade);
+		if ($listeEmployes==null){
+			afficherPage('Directeur','ERREUR : aucun employé n\'existe dans votre base de donnée');
 		}
 		else{
-			throw new Exception('un champ est vide');
+			afficherEmployes($listeEmployes,$grade);
 		}
 	}
 
 	function CtlModifierEmploye($loginRecherche,$login,$mdp,$grade){
 		if (!empty($login) && !empty($mdp)){
-			modifierEmploye($loginRecherche,$login,$mdp,$grade);
+			$checkedLoginRecherche=checkLogin($loginRecherche,$grade);
+			if ($checkedLoginRecherche!=null){
+				modifierEmploye($loginRecherche,$login,$mdp,$grade);
+				afficherPage('Directeur');
+			}
+			else{
+				afficherPage('Directeur',"ERREUR : Le login rechercher n'existe pas dans la bdd");
+			}
 		}
 		else{
-			throw new Exception('un champ est vide');
+			afficherPage('Directeur','ERREUR : un champ est vide');
 		}
 	}
 
 	function CtlCreerMotif($nom,$consigne,$piece,$prix){
 		if (!empty($nom) && !empty($consigne) && !empty($piece) && !empty($prix)){
-			creerMotif($nom,$consigne,$piece,$prix);
+			$checkedNom=checkNomMotif($nom);
+			if ($checkedNom==null){
+				creerMotif($nom,$consigne,$piece,$prix);
+				afficherPage("Directeur", "Un nouveau motif a été crée");
+			}
+			else{
+				afficherPage('Directeur',"ERREUR : Motif déjà existant, veuillez utiliser la fonction modifier ou supprimer motif");
+			}
 		}
 		else{
-			throw new Exception('un des champs vide');
+			afficherPage('Directeur','ERREUR : un des champs vide');
 		}
 	}
 
-	function CtlModifierMotif($nom,$newNom,$newConsigne,$nouvellePiece,$nouveauPrix){
-		if (!empty($nom) && (!empty($newNom) || !empty($newConsigne) || !empty($nouvellePiece) || !empty($nouveauPrix))){
-			$checkedNom=checkNomMotif($nom);
-			if($nom==null){
-				throw new Exception('Nom du motif incorrect');
-			}
-			else{
-				modifierMotif($newNom,$newConsigne,$nouvellePiece,$nouveauPrix);
-			}
+	function CtlModifierMotif($newNom,$newConsigne,$nouvellePiece,$nouveauPrix){
+		if (!empty($newNom) && !empty($newConsigne) && !empty($nouvellePiece) && !empty($nouveauPrix)){
+			$motif=getMotif($nom);
+			modifierMotif($newNom,$newConsigne,$nouvellePiece,$nouveauPrix);
 		}
 		else{
-			throw new Exception('un des champs vide');
+			afficherPage('Directeur','ERREUR : un des champs vide');
 		}
 	}
 
@@ -158,26 +164,27 @@ require_once('Vue/vue.php');
 	function CtlAfficherMotifs(){
 		$motifs=getMotifs();
 		if ($motifs==null){
-			throw new Exception('Aucun motif disponible');
+			afficherPage('Directeur','ERREUR : Aucun motif disponible');
 		}
 		else{
-			afficherMotifs($motifs);
+			afficherMotifsDirecteur($motifs);
 		}
 	}
 
-	function CtlCreerMedecin($nom,$prenom,$spe){
-		if (!empty($nom) && !empty($prenom) && !empty($spe)){
-			creerMedecin($nom,$prenom,$spe);
+	function CtlCreerMedecin($login,$mdp,$nom,$prenom,$spe){
+		if (!empty($login) && !empty($mdp) && !empty($nom) && !empty($prenom) && !empty($spe)){
+			creerMedecin($login,$mdp,$nom,$prenom,$spe);
+			AfficherPage("Directeur", 'Un nouveau médecin a été créé');
 		}
 		else{
-			throw new Exception('un des champs vide');
+			afficherPage('Directeur','ERREUR : un des champs vide');
 		}
 	}
 	
 	function CtlAfficherMedecins(){
-		$medecins=getMedecins();
+		$medecins=getEmployes("Medecin");
 		if ($medecins==null){
-			throw new Exception('Aucun médecins enregistrés');
+			afficherPage('Directeur','ERREUR : Aucun médecins enregistrés');
 		}
 		else{
 			afficherMedecins($medecins);
@@ -185,9 +192,16 @@ require_once('Vue/vue.php');
 	}
 
 	function CtlSupprimerMedecin($id){
-		supprimerMedecin($id);
-		echo "Medecin supprimé";
-		afficherPage('Directeur');
+		if (!empty($id)){
+			$checkedId=checkId($id);
+			if ($checkedId!=null){
+				supprimerMedecin($id);
+				afficherPage('Directeur',"Un médécin vient d'être supprimé");			
+			}
+			else{
+				afficherPage('Directeur',"ERREUR : Id incorrect, médecin non trouvé");
+			}
+		}
 	}
 
 

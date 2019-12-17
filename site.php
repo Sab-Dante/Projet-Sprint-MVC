@@ -7,7 +7,6 @@ try{
 		$login = $_POST["login"];
 		$mdp = $_POST['mdp'];
 		$grade = $_POST['grade'];
-		CtlAfficherMotifsAgent();
 		CtlTesterConnexion($login,$mdp,$grade);
 	}
 	
@@ -55,14 +54,12 @@ try{
 	else if (isset($_POST["creerEmploye"])) {
 		$login=$_POST['login'];
 		$mdp=$_POST['mdp'];
-		$grade=$_POST['grade'];
-		CtlAjouterEmploye($login,$mdp,$grade);
+		CtlCreerEmploye($login,$mdp,"Agent");
 	}
 
-	else if (isset($_POST["rechercherEmploye"])) {
-		$login=$_POST['loginRecherche'];
+	else if (isset($_POST["rechercherEmployes"])) {
 		$grade=$_POST['grade'];
-		CtlAfficherEmployes($login,$grade);
+		CtlAfficherEmployes($grade);
 	}
 
 	else if (isset($_POST["modifierEmploye"])) {
@@ -101,10 +98,12 @@ try{
 	}
 
 	else if (isset($_POST["creerMedecin"])) {
+		$login=$_POST['loginMedecin'];
+		$mdp=$_POST['mdpMedecin'];
 		$nom=$_POST['nomMedecin'];
 		$prenom=$_POST['prenomMedecin'];
 		$spe=$_POST['specialite'];
-		CtlCreerMedecin($nom,$prenom,$spe);
+		CtlCreerMedecin($login,$mdp,$nom,$prenom,$spe);
 	}
 
 	else if (isset($_POST["afficherMedecins"])) {

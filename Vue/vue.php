@@ -51,6 +51,62 @@
 		require_once('gabaritAgents.php');
 	}
 
+
+	function afficherEmployes($listeEmployes,$grade){
+		$contenuEmploye="";
+		if ($grade=="Directeur"){
+			for($i=0;$i<count($listeEmployes); $i++){
+				$contenuEmploye.='
+				<p>Directeur '.$i.' | <label > login : 
+				</label><input type="text" disabled name="login" id="employe'.$i.'" value="'.$listeEmployes[$i][0].'"
+				<label> mdp : </label><input type="text" name="mdp" disabled id="employe'.$i.'" value="'.$listeEmployes[$i][1].'"
+				</p><br/>
+		
+		';
+					}
+		}
+		else if($grade=="Agent"){
+			for($i=0;$i<count($listeEmployes); $i++){
+			$contenuEmploye.='
+			<p>Agent '.$i.' | <label > login : 
+			</label><input type="text" disabled name="login" id="employe'.$i.'" value="'.$listeEmployes[$i][1].'"
+			<label> mdp : </label><input type="text" name="mdp" disabled id="employe'.$i.'" value="'.$listeEmployes[$i][2].'"
+			</p><br/>
+			
+			';			
+			}
+		}
+		else{
+			for($i=0;$i<count($listeEmployes); $i++){
+			$contenuEmploye.='
+			<p>Médecin '.$i.' | <label > login : 
+			</label><input type="text" disabled name="login" id="employe'.$i.'" value="'.$listeEmployes[$i][1].'"
+			<label> mdp : </label><input type="text" name="mdp" disabled id="employe'.$i.'" value="'.$listeEmployes[$i][2].'"
+			</p><br/>
+		
+		';
+			}
+		}
+		require_once('gabaritDirecteur.php');
+
+	}
+
+	function afficherMedecins($listeEmployes){
+			$contenuMedecin="";
+		for($i=0;$i<count($listeEmployes); $i++){
+			$contenuMedecin.='
+			<p>Médecin '.$i.' | <label > Id du Médecin : 
+			</label><input type="text" disabled name="login" id="employe'.$i.'" value="'.$listeEmployes[$i][0].'"
+			<label> Nom : </label><input type="text" name="mdp" disabled id="employe'.$i.'" value="'.$listeEmployes[$i][3].'"
+			<label> Prénom : </label><input type="text" name="mdp" disabled id="employe'.$i.'" value="'.$listeEmployes[$i][4].'"
+			</p><br/>			
+			';
+
+		}
+		require_once('gabaritDirecteur.php');
+
+	}
+
 	function afficherErreur($msg){
  		echo $msg;
 	}
