@@ -118,7 +118,7 @@
 	}
 
 	function afficherMedecins($listeEmployes){
-			$contenuMedecin="";
+		$contenuMedecin="";
 		for($i=0;$i<count($listeEmployes); $i++){
 			$contenuMedecin.='
 			<p>Médecin '.$i.' | <label > Id du Médecin : 
@@ -130,6 +130,21 @@
 
 		}
 		require_once('gabaritDirecteur.php');
+
+	}
+
+	function afficherPageModifMotif($motif){
+		$contenuModif="";
+		$contenuModif.='<p>
+		<label> Motif en cours de modification : </label><input type="text" name="nomModif" value="'.$motif[0][0].'"/><br/></p>
+		<p><label> Nouveau nom de motif : </label><input type="text" name="nouveauNom" value="'.$motif[0][0].'"
+		/><br/>
+		<label> Nouvelles Consignes : </label><input type="text" name="nouvelleConsigne" value="'.$motif[0][1].'"/><br/>
+		<label> Pièces : </label><input type="text" name="nouvellePiece" value="'.$motif[0][2].'"/><br/>
+		<label> Nouveau prix : </label><input type="number" name="nouveauPrix" step="0.01" min=0 value="'.$motif[0][3].'"/><br/>
+		<input type="submit" name="validerModif" value="Valider les modifications" /><br/></p>';
+		require_once('gabaritDirecteur.php');
+	}	
 
 	function afficherErreur($msg){
  		echo $msg;
