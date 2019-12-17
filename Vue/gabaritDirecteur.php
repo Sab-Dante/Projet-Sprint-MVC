@@ -9,8 +9,12 @@
 </head>
 
 <body>
+
+  <h1>Environnement du Directeur</h1>
+
+  <?php if(isset($exceptionLevee)){echo '<p class="msgErreurPageAgent">'.$exceptionLevee.'</p>';} ?>
   <fieldset>
-    <legend>Creation d'un compte employé</legend>
+    <legend>Creation d'un compte agent</legend>
     <form action="site.php" method="post">
       <p>
         <label>login : </label><input type="text" name="login" required /><br/>
@@ -19,34 +23,68 @@
         <label>mot de passe : </label><input type="password" name="mdp" required/><br/>
       </p>
       <p>
-        <input type="radio" name="grade" value="Agent" checked><label>Agent</label><br/>
-        <input type="radio" name="grade" value="Medecin"><label>Médecin</label><br/>
-        <input type="radio" name="grade" value="Directeur"><label>Directeur</label><br/>
-      </p>
-      <p>
-        <input type="submit" name="creerEmploye" value="Creer"/>
+        <input type="submit" name="creerEmploye" value="Creer un compte"/>
       </p>
     </form>
   </fieldset>
 
+
+  <fieldset>
+    <legend>Créer un médecin </legend>
+    <form action="site.php" method="post">
+      <p>
+        <label>login : </label><input type="text" name="loginMedecin" required /><br/>
+      </p>
+      <p>
+        <label>mot de passe : </label><input type="password" name="mdpMedecin" required/><br/>
+      </p>
+      <p>
+        <label>Nom du médecin : </label><input type="text" name="nomMedecin" /><br/>
+      </p>
+      <p>
+        <label>Prénom du médecin : </label><input type="text" name="prenomMedecin" /><br/>
+      </p>
+      <p>
+        <label>Spécialité du médecin : </label><input type="text" name="specialite"/><br/>
+      </p>
+      <p>
+        <input type="submit" name="creerMedecin" value="Créer le médecin" /><br/>
+      </p>
+    </form>
+   </fieldset>
+
+
+
   <fieldset>
     <legend>Modifier un compte employé </legend>
     <form action="site.php" method="post">
+
       <p>
-        <label>Login de l'employé : </label><input type="text" name="loginRecherche" required /><br/>
+        <label>Login du compte voulant être modifie :</label>
+        <input type="text" name="loginRecherche" />
       </p>
+      <p>
+        <label>Nouveau login souhaite : </label>
+        <input type="text" name="modifLogin"/>
+      </p>
+      <p>
+        <label>Nouveau mot de passe : </label>
+        <input type="password" name="modifMdp"/>
       <p>
         <input type="radio" name="grade" value="Agent" checked><label>Agent</label><br/>
         <input type="radio" name="grade" value="Medecin"><label>Médecin</label><br/>
         <input type="radio" name="grade" value="Directeur"><label>Directeur</label><br/>
       </p>
       <p>
-        <input type="submit" name="rechercherEmploye" value="Rechercher l'employé"/>
-        <input type="submit" name="modifierEmploye" value="Modifier l'employé coché"/><br/>
+        <input type="submit" name="rechercherEmployes" value="Rechercher tous les employés de la catégorie coché"/>
+        <input type="submit" name="modifierEmploye" value="Modifier le compte employe"/><br/>
       </p>
-<!-- code jss pour afficher deux input type pour le new login et le new mdp name= modifLogin, modifMdp -->
 
-    <?php echo $contenu;?>
+        <?php 
+        if(isset($contenuEmploye)){
+        echo $contenuEmploye;
+        }?>
+
       </form>
     </fieldset>
 
@@ -57,13 +95,13 @@
           <label>Nom du motif : </label><input type="text" name="nomMotif" required /><br/>
         </p>
         <p>
-          <label>Consigne : </label><input type="text" name="consigne" required /><br/>
+          <label>Consignes : </label><input type="text" name="consigne" value="Aucune" required /><br/>
         </p>
         <p>
-          <label>Pièce justificative : </label><input type="text" name="piece" required/><br/>
+          <label>Pièces justificatives : </label><input type="text" name="piece" value="Aucune" required/><br/>
         </p>
         <p>
-          <label>Prix : </label><input type="number" name="prix" step="0.01" required /><br/>
+          <label>Prix : </label><input type="number" name="prix" step="0.01" min=0 required /><br/>
         </p>
         <p>
           <input type="submit" name="creerMotif" value="Créer un motif" /><br/>
@@ -75,22 +113,20 @@
       <legend>Modifier un motif de rdv</legend>
       <form action="site.php" method="post">
         <p>
-          <label>Nom du motif à modifier</label><input type="text" name="nomModif" required /><br/>
-        </p>
-        <p>
           <label>Nouveau nom du motif</label><input type="text" name="nouveauNom" /><br/>
         </p>
         <p>
-          <label>Consigne : </label><input type="text" name="nouvelleConsigne" /><br/>
+          <label>Consignes : </label><input type="text" name="nouvelleConsigne" /><br/>
         </p>
         <p>
-          <label>Pièce justificative : </label><input type="text" name="nouvellePiece" /><br/>
+          <label>Pièces justificatives : </label><input type="text" name="nouvellePiece" /><br/>
         </p>
         <p>
-          <label>Prix : </label><input type="number" name="nouveauPrix" step="0.01" /><br/>
+          <label>Prix : </label><input type="number" name="nouveauPrix" min=0 step="0.01" /><br/>
         </p>
         <p>
-          <input type="submit" name="modifierMotif" value="Modifier un motif" /><br/>
+          <input type="submit" name="afficherMotifs" value="Afficher les motifs" /><br/>
+          <input type="submit" name="modifierMotif" value="Modifier le motif coché" /><br/>
         </p>
       </form>
     </fieldset>
@@ -99,43 +135,25 @@
       <legend>Supprimer un motif de rdv </legend>
       <form action="site.php" method="post">
         <p>
-          <label>Nom du motif à supprimer</label><input type="text" name="motifSupprimer"  /><br/>
-        </p>
-        <p>
-          <input type="submit" name="supprimerMotif" value="Supprimer le motif" /><br/>
+          <input type="submit" name="supprimerMotif" value="Supprimer le motif coché" /><br/>
           <input type="submit" name="afficherMotifs" value="Afficher les motifs" /><br/>
         </p>
       </form>
     </fieldset>
 
     <fieldset>
-      <legend>Créer un médecin </legend>
-      <form action="site.php" method="post">
-        <p>
-          <label>Nom du médecin : </label><input type="text" name="nomMedecin" /><br/>
-        </p>
-        <p>
-          <label>Prénom du médecin : </label><input type="text" name="prenomMedecin" /><br/>
-        </p>
-        <p>
-          <label>Spécialité du médecin : </label><input type="text" name="specialite" /><br/>
-        </p>
-        <p>
-          <input type="submit" name="creerMedecin" value="Créer le médecin" /><br/>
-        </p>
-      </form>
-    </fieldset>
-
-
-    <fieldset>
       <legend>Supprimer un médecin </legend>
       <form action="site.php" method="post">
+
+            <p>
+              <label>Id du Médecin à supprimer : </label>
+              <input type="number" min=0 name="idMedecin"/>
             <p>
                 <input type="submit" value="Afficher les médecins" name="afficherMedecins" /><br/>
             </p>
             <?php 
-    		if(isset($contenu)){
-    		echo $contenu;
+    		if(isset($contenuMedecin)){
+    		echo $contenuMedecin;
     		}?>
             <p>
                 <input type="submit" value="Supprimer un médecin" name="supprimerMedecin" /><br/>
