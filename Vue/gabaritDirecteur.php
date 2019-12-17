@@ -132,6 +132,7 @@
                 </p>
                 <p>
                     <input type="submit" name="creerMotif" value="Créer un motif" />
+                    <input type="submit" name="afficherMotifs" value="Afficher les motifs existants"
                     <br/>
                 </p>
             </form>

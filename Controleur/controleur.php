@@ -152,8 +152,6 @@ require_once('Vue/vue.php');
 			afficherPage('Agent','Solde insuffisant.');
 		}
 	}
-
-	);
 			
 //Bloquer les créneaux pour le médecin
 	function CtlBloquerCreneau($login, $date, $hour){
@@ -203,7 +201,7 @@ require_once('Vue/vue.php');
 			$checkedLoginRecherche=checkLogin($loginRecherche,$grade);
 			if ($checkedLoginRecherche!=null){
 				modifierEmploye($loginRecherche,$login,$mdp,$grade);
-				afficherPage('Directeur');
+				afficherPage('Directeur',"Un compte employé a bien été modifié");
 			}
 			else{
 				afficherPage('Directeur',"ERREUR : Le login rechercher n'existe pas dans la bdd");
